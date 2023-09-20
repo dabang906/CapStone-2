@@ -6,15 +6,17 @@ public class Stone : MonoBehaviour
     public Route currentRoute;
 
     int routePosition;
-
+    public int coin = 20;
     public static int diceNum;
     public int steps;
 
     bool isMoving;
-
+    SphereCollider sphereCollider;
     bool hasRolledDice;  // 주사위를 굴렸는지 여부를 저장하는 변수
-    private void Awake() {
+    void Awake() {
         routePosition++;
+        sphereCollider = GetComponentInChildren<SphereCollider>();
+        sphereCollider.isTrigger = true;
     }
     void Update()
     {
@@ -39,6 +41,7 @@ public class Stone : MonoBehaviour
 
         while (steps > 0)
         {
+            sphereCollider.isTrigger = false;
             if (currentRoute.childNodeList.Count == 0)
             {
                 Debug.Log("No nodes in the route.");
@@ -62,11 +65,18 @@ public class Stone : MonoBehaviour
         }
         isMoving = false;
         hasRolledDice = false;  // 이동이 끝났으므로 다음 주사위 굴림을 허용
+        sphereCollider.isTrigger = true;
+
         diceNum = 0;
     }
 
     bool MoveToNextNode(Vector3 goal)
     {
         return goal != (transform.position = Vector3.MoveTowards(transform.position, goal, 2f * Time.deltaTime));
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        
     }
 }
