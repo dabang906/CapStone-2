@@ -8,6 +8,8 @@ TagManager:
   - Blue
   - Lucky
   - Trap
+  - Plane
+  - Box
   layers:
   - Default
   - TransparentFX
