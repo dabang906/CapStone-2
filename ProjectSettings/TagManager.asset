@@ -11,6 +11,8 @@ TagManager:
   - Plane
   - Box
   - Wall
+  - Correct
+  - Wrong
   layers:
   - Default
   - TransparentFX
