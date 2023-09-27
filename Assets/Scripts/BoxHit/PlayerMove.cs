@@ -15,6 +15,11 @@ public class PlayerMove : MonoBehaviour
     {
         isJump = false;
         rig = GetComponent<Rigidbody>();
+
+        Freeze();
+
+        Invoke("UnFreeze", 5.0f);
+        Invoke("Freeze", 15.0f);
     }
 
     void FixedUpdate()
@@ -36,6 +41,17 @@ public class PlayerMove : MonoBehaviour
         {
             isJump = false;
         }
+    }
+
+    void Freeze()
+    {
+        rig.constraints = RigidbodyConstraints.FreezeAll;
+    }
+
+    void UnFreeze()
+    {
+        rig.constraints = RigidbodyConstraints.FreezeAll;
+        rig.constraints &= ~RigidbodyConstraints.FreezePositionY;
     }
 
     void Jump(bool isJump)
