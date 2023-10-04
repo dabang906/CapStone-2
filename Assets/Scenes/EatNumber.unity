@@ -468,7 +468,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b77fd9b915c3e4fb0b184dc5933a8d2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obj: {fileID: 0}
   text: {fileID: 1724281232}
   movePower: 10
 --- !u!1 &1020517388
@@ -585,7 +584,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8283026848d16444da6d7cbd21346895, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Card: {fileID: 0}
+  Card: {fileID: 2060864878}
   spawnTime: 2
   drag: 3
 --- !u!1 &1335964258
@@ -1101,10 +1100,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2093594558268801879, guid: 84e8d13fa834a47bab132f787079d038, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2060864880}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84e8d13fa834a47bab132f787079d038, type: 3}
 --- !u!1 &2060864878 stripped
 GameObject:
@@ -1122,33 +1118,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!54 &2060864880
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2060864878}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 3
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!4 &613694806787007802
 Transform:
   m_ObjectHideFlags: 0
