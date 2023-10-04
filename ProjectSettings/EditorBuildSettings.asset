@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/55yong.unity
+    path: Assets/Scenes/BoxHit.unity
     guid: ffc468d1c90694ac084c03f43a4f66c0
   - enabled: 1
     path: Assets/Scenes/MainScene.unity
