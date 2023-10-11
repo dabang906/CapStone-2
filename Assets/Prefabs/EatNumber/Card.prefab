@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 4584738546934753522}
   - component: {fileID: 7748581165146733339}
   - component: {fileID: 2908430190510226840}
-  - component: {fileID: 8047383522021388512}
+  - component: {fileID: 6694314844660595583}
   m_Layer: 0
   m_Name: Card
   m_TagString: Box
@@ -186,7 +186,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8047383522021388512
+--- !u!114 &6694314844660595583
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -198,8 +198,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b0b7f8c304614de0b018d9b84916d7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obj: {fileID: 0}
-  text: {fileID: 0}
+  MulText: {fileID: 7805839749571669812}
+  number: 0
 --- !u!1 &7455284830439084422
 GameObject:
   m_ObjectHideFlags: 0

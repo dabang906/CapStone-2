@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class Card : MonoBehaviour
 {
     public Text MulText;
-
     public int number;
 
     private void Awake()
@@ -19,7 +18,12 @@ public class Card : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.y <= -1)
+        if (transform.position.y <= 1)
+        {
+            Destroy(gameObject);
+        }
+
+        if (FindObjectOfType<EatNumberTimer>().timerRunning == false)
         {
             Destroy(gameObject);
         }
