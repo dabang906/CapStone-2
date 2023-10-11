@@ -1,32 +1,58 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EatNumberPlayerMove : MonoBehaviour
 {
+    public Text text;
+
     public int movePower;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    private int mul;
+    private bool pause;
 
+    private void Start()
+    {
+        mul = 1;
+
+        Freeze();
+
+        Invoke("UnFreeze", 5.0f);
+        Invoke("Freeze", 35.0f);
     }
 
     private void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.A))
+        if (pause) { 
+            if (Input.GetKey(KeyCode.A))
+            {
+                transform.position += Vector3.left * movePower * Time.deltaTime;
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                transform.position += Vector3.right * movePower * Time.deltaTime;
+            }
+        }  
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Box")
         {
-            transform.position += new Vector3(-1, 0, 0) * movePower * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.position += new Vector3(1, 0, 0) * movePower * Time.deltaTime;
+            mul = mul * other.GetComponent<Card>().number;
+            text.text = "Number : " + mul.ToString();
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    void Freeze()
     {
-        
+        pause = false;
+    }
+
+    void UnFreeze()
+    {
+        pause = true;
     }
 }

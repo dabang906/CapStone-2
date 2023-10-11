@@ -2,29 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement; // SceneManager 사용을 위한 네임스페이스 추가
 
-
-public class CollisionEvent : MonoBehaviour
+public class EatNumberTimer : MonoBehaviour
 {
     public Text displayCount;
     public Text timerText;
     public Text text;
+    public bool timerRunning = false;
+    private float time = 30.0f;
     private float startTime;
     private float elapsedTime;
-    private bool timerRunning = false;
 
-    int count;
-    int mul;
-
+    // Start is called before the first frame update
     void Start()
     {
-        ResetTimer();
-
         int rand1 = Random.Range(41, 100);
 
-        count = rand1;
-        text.text = count.ToString();
+        ResetTimer();
 
         Invoke("DisplayRand2", 1.0f);
 
@@ -36,15 +30,8 @@ public class CollisionEvent : MonoBehaviour
         Invoke("StartTimer", 5.0f);
     }
 
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            count = count - mul;
-        }
-    }
-
-    private void Update()
+    // Update is called once per frame
+    void Update()
     {
         if (timerRunning)
         {
@@ -52,7 +39,7 @@ public class CollisionEvent : MonoBehaviour
             elapsedTime = Time.time - startTime;
 
             // 1분(60초)에서 경과 시간을 뺌
-            float remainingTime = 10.0f - elapsedTime;
+            float remainingTime = time - elapsedTime;
 
             if (remainingTime <= 0)
             {
@@ -60,7 +47,7 @@ public class CollisionEvent : MonoBehaviour
                 remainingTime = 0;
                 timerRunning = false;
                 displayCount.fontSize = 30;
-                displayCount.text = "남은 횟수 : " + count.ToString();
+                displayCount.text = "";
                 //SceneManager.LoadScene("MainScene");
             }
 
@@ -71,10 +58,11 @@ public class CollisionEvent : MonoBehaviour
 
     void DisplayRand2()
     {
-        int rand2 = Random.Range(3, 8);
-        mul = rand2;
-        text.text = mul.ToString();
+        //int rand2 = Random.Range(3, 8);
+        //mul = rand2;
+        //text.text = mul.ToString();
     }
+
     void DisplayCount3()
     {
         displayCount.text = "3";
@@ -103,7 +91,7 @@ public class CollisionEvent : MonoBehaviour
         startTime = 0f;
         elapsedTime = 0f;
         timerRunning = false;
-        timerText.text = "Time : " + FormatTime(10.0f);
+        timerText.text = "Time : " + FormatTime(time);
     }
 
     private string FormatTime(float timeInSeconds)
