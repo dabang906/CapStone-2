@@ -41,7 +41,7 @@ public class EatNumberPlayerMove : MonoBehaviour
     {
         if (other.tag == "Box")
         {
-            mul = mul * other.GetComponent<Card>().number;
+            mul = mul * other.GetComponent<EatNumberCard>().number;
             text.text = "Number : " + mul.ToString();
         }
     }
