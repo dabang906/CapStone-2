@@ -666,9 +666,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Card: {fileID: 2093594558268801879, guid: 84e8d13fa834a47bab132f787079d038, type: 3}
-  spawnTime: 2
-  drag: 3
-  pause: 0
+  OPCard: {fileID: 2093594558268801879, guid: d570dc0920c9b4b49b3ac149af2dc505, type: 3}
+  CardSpawnTime: 2
+  CardDrag: 3
+  OPCardSpawnTime: 2
+  OPCardDrag: 3
+  freeze: 0
 --- !u!1 &1335964258
 GameObject:
   m_ObjectHideFlags: 0
@@ -956,10 +959,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1020517392}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 376.8175, y: 125.4302}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -188.40875, y: 62.715103}
+  m_SizeDelta: {x: 376.8175, y: 125.43021}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1724281232
 MonoBehaviour:

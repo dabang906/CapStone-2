@@ -91,10 +91,10 @@ GameObject:
   - component: {fileID: 4584738546934753522}
   - component: {fileID: 7748581165146733339}
   - component: {fileID: 2908430190510226840}
-  - component: {fileID: 6694314844660595583}
+  - component: {fileID: 8363602725543844327}
   m_Layer: 0
-  m_Name: Card
-  m_TagString: Box
+  m_Name: EatNumberCard_op
+  m_TagString: OpBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -186,7 +186,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6694314844660595583
+--- !u!114 &8363602725543844327
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -195,11 +195,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2093594558268801879}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b0b7f8c304614de0b018d9b84916d7f, type: 3}
+  m_Script: {fileID: 11500000, guid: 570c8d1fe73024d51888e11b9d416bda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MulText: {fileID: 7805839749571669812}
-  number: 0
 --- !u!1 &7455284830439084422
 GameObject:
   m_ObjectHideFlags: 0
