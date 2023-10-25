@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 public class Stone : MonoBehaviour
 {
     public Route currentRoute;
 
     int routePosition;
+    int count = 0;
     public int coin = 20;
     public static int diceNum;
     public int steps;
@@ -66,8 +68,13 @@ public class Stone : MonoBehaviour
         isMoving = false;
         hasRolledDice = false;  // 이동이 끝났으므로 다음 주사위 굴림을 허용
         sphereCollider.isTrigger = true;
-
+        count++;
         diceNum = 0;
+
+        if(count %4 == 0)
+        {
+            SceneManager.LoadScene(Random.RandomRange(1, 4));
+        }
     }
 
     bool MoveToNextNode(Vector3 goal)
