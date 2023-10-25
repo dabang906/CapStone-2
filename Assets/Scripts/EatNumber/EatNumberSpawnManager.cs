@@ -3,15 +3,21 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class EatNumberSpawnManager : MonoBehaviour
 {
     public GameObject Card;
+    public GameObject OPCard;
 
-    public float spawnTime = 1.0f;
-    public float drag = 1.0f;
-    public bool pause;
+    public float CardSpawnTime = 1.0f;
+    public float CardDrag = 1.0f;
+    public float OPCardSpawnTime = 2.0f;
+    public float OPCardDrag = 1.0f;
+    public bool freeze;
 
+    private GameObject item;
+    private int count = 0;
     private float time = 0;
 
     private void Start()
@@ -26,26 +32,34 @@ public class EatNumberSpawnManager : MonoBehaviour
     void Update()
     {
         this.time += Time.deltaTime;
-        if ((this.time >= this.spawnTime) && pause)
+        if ((this.time >= this.CardSpawnTime) && freeze)
         {
             this.time = 0;
-
-            GameObject item = Instantiate(Card);
-
+            if (count == 0)
+            {
+                item = Instantiate(Card);
+                count = 1;
+            }
+            else if (count == 1)
+            {
+                item = Instantiate(OPCard);
+                count = 0;
+            }
             Rigidbody rig = item.AddComponent<Rigidbody>();
-            rig.drag = this.drag;
+            rig.drag = this.CardDrag;
 
             item.transform.position = new Vector3(Random.Range(-3, 4), 20, 0);
+
         }
     }
 
     void Freeze()
     {
-        pause = false;
+        freeze = false;
     }
 
     void UnFreeze()
     {
-        pause = true;
+        freeze = true;
     }
 }
