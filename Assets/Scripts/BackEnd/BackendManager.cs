@@ -1,13 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Threading.Tasks;
 using BackEnd;
 
 public class BackendManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Button LoginBtn, RegistBtn, ExitBtn;
+
+    public GameObject Login, Regist;
+
+    private static BackendManager _instance = null;
+
+    public static BackendManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = new BackendManager();
+            }
+            return _instance;
+        }
+    }
+
+    private void Start()
     {
         var bro = Backend.Initialize(true);
 
@@ -20,33 +38,28 @@ public class BackendManager : MonoBehaviour
             Debug.LogError("초기화 실패 : " + bro);
         }
 
-        Test();
+        LoginBtn.onClick.AddListener(GameLogin);
+        RegistBtn.onClick.AddListener(GameRegist);
+        ExitBtn.onClick.AddListener(GameExit);
     }
 
-    async void Test()
+    private void GameLogin()
     {
-        await Task.Run(() =>
-        {
-            BackendLogin.Instance.CustomLogin("user1", "1234");
 
-            //BackendGameData.Instance.GameDataInsert();
-            //BackendGameData.Instance.GameDataGet();
+        this.gameObject.SetActive(false);
+        Login.gameObject.SetActive(true);
 
-            //if (BackendGameData.userData == null)
-            //{
-            //    BackendGameData.Instance.GameDataInsert();
-            //}
+    }
 
-            //BackendGameData.Instance.LevelUp();
+    private void GameRegist()
+    {
+        this.gameObject.SetActive(false);
+        Regist.gameObject.SetActive(true);
+    }
 
-            //BackendGameData.Instance.GameDataUpdate();
-
-            //BackendRank.Instance.RankInsert(100);
-            //BackendRank.Instance.RankGet();
-
-            BackendChart.Instance.ChartGet("95859");
-
-            Debug.Log("테스트를 종료합니다.");
-        });
+    private void GameExit()
+    {
+        Debug.Log("게임 종료!");
+        Application.Quit();
     }
 }

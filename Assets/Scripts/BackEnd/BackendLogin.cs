@@ -4,11 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 
 using BackEnd;
+using BackEnd.Tcp;
 
 public class BackendLogin : MonoBehaviour
 {
-    public Text IDText, PWText;
+    public InputField IDText, PWText;
     public Button Confirm, Back;
+    public GameObject RoomList, Title;
 
     private static BackendLogin _instance = null;
 
@@ -16,7 +18,7 @@ public class BackendLogin : MonoBehaviour
     {
         get
         {
-            if(_instance == null)
+            if (_instance == null)
             {
                 _instance = new BackendLogin();
             }
@@ -26,48 +28,24 @@ public class BackendLogin : MonoBehaviour
 
     private void Start()
     {
-        var bro = Backend.Initialize(true);
-
-        if (bro.IsSuccess())
-        {
-            Debug.Log("초기화 성공 : " + bro);
-        }
-        else
-        {
-            Debug.LogError("초기화 실패 : " + bro);
-        }
-
+        Backend.Match.Poll();
         Confirm.onClick.AddListener(GetValue);
         Back.onClick.AddListener(GetBack);
     }
 
     private void GetValue()
     {
-        string id = IDText.GetComponentInChildren<Text>().text;
-        string pw = PWText.GetComponentInChildren<Text>().text;
+        string id = IDText.text;
+        string pw = PWText.text;
 
         CustomLogin(id, pw);
     }
 
     private void GetBack()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("TitleScene");
-    }
-
-    public void CustomSignUp(string id, string pw)
-    {
-        Debug.Log("회원가입을 요청합니둥.");
-
-        var bro = Backend.BMember.CustomSignUp(id, pw);
-
-        if(bro.IsSuccess())
-        {
-            Debug.Log("회원가입에 성공했습니둥 : " + bro);
-        }
-        else
-        {
-            Debug.Log("회원가입에 실패했습니둥. : " + bro);
-        }
+        ClearText();
+        this.gameObject.SetActive(false);
+        Title.gameObject.SetActive(true);
     }
 
     public void CustomLogin(string id, string pw)
@@ -79,42 +57,23 @@ public class BackendLogin : MonoBehaviour
         if (bro.IsSuccess())
         {
             Debug.Log("로그인에 성공했습니둥 : " + bro);
+            ClearText();
+            this.gameObject.SetActive(false);
+            RoomList.gameObject.SetActive(true);
+            ErrorInfo errorInfo;
+            Backend.Match.JoinMatchMakingServer(out errorInfo);
+            Debug.Log(errorInfo);
         }
         else
         {
             Debug.Log("로그인에 실패했습니둥. : " + bro);
+            ClearText();
         }
     }
 
-    public void UpdateNickname(string nickname)
+    public void ClearText()
     {
-        Debug.Log("닉네임 변경을 요청합니둥.");
-
-        var bro = Backend.BMember.UpdateNickname(nickname);
-
-        if (bro.IsSuccess())
-        {
-            Debug.Log("닉네임 변경에 성공했습니둥 : " + bro);
-        }
-        else
-        {
-            Debug.Log("닉네임 변경에 실패했습니둥. : " + bro);
-        }
-    }
-
-    public void UpdateCountry()
-    {
-        Debug.Log("국가 코드를 변경합니둥.");
-
-        var bro = Backend.BMember.UpdateCountryCode(BackEnd.GlobalSupport.CountryCode.SouthKorea);
-
-        if (bro.IsSuccess())
-        {
-            Debug.Log("국가 코드 변경에 성공했습니둥 : " + bro);
-        }
-        else
-        {
-            Debug.Log("국가 코드 변경에 실패했습니둥. : " + bro);
-        }
+        IDText.text = null;
+        PWText.text = null;
     }
 }
