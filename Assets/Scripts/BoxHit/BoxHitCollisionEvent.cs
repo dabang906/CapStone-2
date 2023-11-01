@@ -28,10 +28,7 @@ public class BoxHitCollisionEvent : MonoBehaviour
 
         Invoke("DisplayRand2", 1.0f);
 
-        Invoke("DisplayCount3", 2.0f);
-        Invoke("DisplayCount2", 3.0f);
-        Invoke("DisplayCount1", 4.0f);
-        Invoke("DisplayReset", 5.0f);
+        StartCoroutine("DisplayCount");
 
         Invoke("StartTimer", 5.0f);
     }
@@ -75,21 +72,15 @@ public class BoxHitCollisionEvent : MonoBehaviour
         mul = rand2;
         text.text = mul.ToString();
     }
-    void DisplayCount3()
+    IEnumerator DisplayCount()
     {
-        displayCount.text = "3";
-    }
-    void DisplayCount2()
-    {
-        displayCount.text = "2";
-    }
-    void DisplayCount1()
-    {
-        displayCount.text = "1";
-    }
-    void DisplayReset()
-    {
+        for (int i = 3; i > 0; i--)
+        {
+            displayCount.text = i.ToString();
+            yield return new WaitForSeconds(1f);
+        }
         displayCount.text = "";
+        yield return null;
     }
 
     public void StartTimer()
