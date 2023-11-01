@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657892, g: 0.4964128, b: 0.5748173, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -285,67 +285,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1571050366
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2242122315309978627, guid: 739fbe9bb91861146a575d2414d4faea, type: 3}
-      propertyPath: m_Name
-      value: Ground1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2242122315309978627, guid: 739fbe9bb91861146a575d2414d4faea, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4889202144257604262, guid: 739fbe9bb91861146a575d2414d4faea, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4889202144257604262, guid: 739fbe9bb91861146a575d2414d4faea, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4889202144257604262, guid: 739fbe9bb91861146a575d2414d4faea, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4889202144257604262, guid: 739fbe9bb91861146a575d2414d4faea, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4889202144257604262, guid: 739fbe9bb91861146a575d2414d4faea, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4889202144257604262, guid: 739fbe9bb91861146a575d2414d4faea, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4889202144257604262, guid: 739fbe9bb91861146a575d2414d4faea, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4889202144257604262, guid: 739fbe9bb91861146a575d2414d4faea, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4889202144257604262, guid: 739fbe9bb91861146a575d2414d4faea, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4889202144257604262, guid: 739fbe9bb91861146a575d2414d4faea, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 739fbe9bb91861146a575d2414d4faea, type: 3}
 --- !u!1 &1600179822
 GameObject:
   m_ObjectHideFlags: 0
@@ -846,7 +785,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1977134893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -860,12 +799,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilePrefabs:
-  - {fileID: 2242122315309978627, guid: 739fbe9bb91861146a575d2414d4faea, type: 3}
-  - {fileID: 4344224145274549483, guid: e73323dae09392b4eabe411216417341, type: 3}
+  - {fileID: 1583655733878868611, guid: 614f377ca1555dd42bc34646fc368304, type: 3}
+  - {fileID: 1583655733878868611, guid: 598a1fd79166ee44890faf6d70ba919a, type: 3}
   playerTransform: {fileID: 1812573104}
   zSpawn: 0
-  tileLength: 40
-  numberOfTiles: 5
+  tileLength: 30
+  numberOfTiles: 3
 --- !u!4 &1977134894
 Transform:
   m_ObjectHideFlags: 0
@@ -970,4 +909,3 @@ SceneRoots:
   - {fileID: 1977134894}
   - {fileID: 1600179826}
   - {fileID: 1002265396}
-  - {fileID: 1571050366}

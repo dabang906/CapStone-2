@@ -2,24 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
-public class EatNumberTimer : MonoBehaviour
+public class Timer : MonoBehaviour
 {
     public Text displayCount;
     public Text timerText;
-    public Text text;
     public bool timerRunning = false;
-    private float time = 30.0f;
+    private float time;
     private float startTime;
     private float elapsedTime;
 
+    void Awake()
+    {
+        if (SceneManager.GetActiveScene().name == "BoxHit") time = 10f;
+        else if (SceneManager.GetActiveScene().name == "EatNumber") time = 30f;
+        else if (SceneManager.GetActiveScene().name == "MatchingColorScene" ||
+            SceneManager.GetActiveScene().name == "FindCorrect") time = 60f;
+    }
     // Start is called before the first frame update
     void Start()
     {
         ResetTimer();
-
         StartCoroutine("DisplayCount");
-
     }
 
     // Update is called once per frame
@@ -27,16 +32,13 @@ public class EatNumberTimer : MonoBehaviour
     {
         if (timerRunning)
         {
-            // Í≤ΩÍ≥º ÏãúÍ∞Ñ Í≥ÑÏÇ∞
+            // ∞Ê∞˙ Ω√∞£ ∞ËªÍ
             elapsedTime = Time.time - startTime;
-
-            // 1Î∂Ñ(60Ï¥à)ÏóêÏÑú Í≤ΩÍ≥º ÏãúÍ∞ÑÏùÑ Î∫å
-
+            // timeø°º≠ ∞Ê∞˙ Ω√∞£¿ª ª≠
             float remainingTime = time - elapsedTime;
-
             if (remainingTime <= 0)
             {
-                // ÏãúÍ∞ÑÏù¥ Îã§ ÎêòÎ©¥ ÌÉÄÏù¥Î®∏ Ï†ïÏßÄ
+                // Ω√∞£¿Ã ¥Ÿ µ«∏È ≈∏¿Ã∏” ¡§¡ˆ
                 remainingTime = 0;
                 timerRunning = false;
                 displayCount.fontSize = 30;
@@ -44,14 +46,15 @@ public class EatNumberTimer : MonoBehaviour
                 //SceneManager.LoadScene("MainScene");
             }
 
-            // ÏãúÍ∞ÑÏùÑ ÌÖçÏä§Ìä∏Î°ú ÌëúÏãú
+            // Ω√∞£¿ª ≈ÿΩ∫∆Æ∑Œ «•Ω√
             timerText.text = "Time : " + FormatTime(remainingTime);
         }
     }
 
     IEnumerator DisplayCount()
     {
-        for (int i = 3;  i > 0; i--) {
+        for (int i = 3; i > 0; i--)
+        {
             displayCount.text = i.ToString();
             yield return new WaitForSeconds(1f);
         }
@@ -72,7 +75,6 @@ public class EatNumberTimer : MonoBehaviour
         timerRunning = false;
         timerText.text = "Time : " + FormatTime(time);
     }
-
     private string FormatTime(float timeInSeconds)
     {
         int minutes = Mathf.FloorToInt(timeInSeconds / 60);

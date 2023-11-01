@@ -24,7 +24,7 @@ public class EatNumberSpawnManager : MonoBehaviour
     {
         Freeze();
 
-        Invoke("UnFreeze", 5.0f);
+        Invoke("UnFreeze", 0f);
         Invoke("Freeze", 35.0f);
     }
 

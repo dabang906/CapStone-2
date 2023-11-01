@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 public class Stone : MonoBehaviour
 {
     public Route currentRoute;
+    public int count = 0;
 
     int routePosition;
-    int count = 0;
     public int coin = 20;
     public static int diceNum;
     public int steps;

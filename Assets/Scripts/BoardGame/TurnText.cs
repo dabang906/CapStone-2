@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DiceNumberTextScript : MonoBehaviour
+public class TurnText : MonoBehaviour
 {
     Text text;
-    public static int diceNumber;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +15,6 @@ public class DiceNumberTextScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        text.text = "dicenum : " +  diceNumber.ToString();
+        text.text = "Turn : " + Stone.FindObjectOfType<Stone>().count.ToString();
     }
 }

@@ -8,10 +8,10 @@ public class TileManager : MonoBehaviour
     public Transform playerTransform;
     public float zSpawn = 0;
     public float tileLength = 30;
-    public int numberOfTiles = 2;
+    public int numberOfTiles = 3;
     
     List<GameObject> activeTiles = new List<GameObject>();
-    void Start()
+    void Start()    
     {
         for(int i =0;i<numberOfTiles; i++)
         {
@@ -23,7 +23,7 @@ public class TileManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(playerTransform.position.z > zSpawn - (numberOfTiles * tileLength))
+        if(playerTransform.position.z - 35 > zSpawn - (numberOfTiles * tileLength))
         {
             SpawnTile(Random.Range(0, tilePrefabs.Length));
             DeleteTile();
