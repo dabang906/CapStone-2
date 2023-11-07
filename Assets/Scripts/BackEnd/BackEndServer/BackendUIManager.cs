@@ -1,5 +1,6 @@
 using BackEnd;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class BackendUIManager : MonoBehaviour
@@ -33,6 +34,11 @@ public class BackendUIManager : MonoBehaviour
 
     // makeRoomObject 하위 Object
     public Button makeRoomConfirm, makeRoomBack;
+    private InputField makeRoomTitle;
+
+    // waitingRoomObject 하위 Object
+    public Button waitingRoomConfirm, waitingRoomBack;
+    private Text waitingRoomTitle;
 
     public static BackendUIManager GetInstance()
     {
@@ -51,7 +57,6 @@ public class BackendUIManager : MonoBehaviour
 
     private void Start()
     {
-
         titleObject.SetActive(true);
         loginObject.SetActive(false);
         signUpObject.SetActive(false);
@@ -63,6 +68,10 @@ public class BackendUIManager : MonoBehaviour
         signUpField = signUpObject.GetComponentsInChildren<InputField>();
 
         roomListShowNickname = roomListObject.GetComponentInChildren<Text>();
+
+        makeRoomTitle = makeRoomObject.GetComponentInChildren<InputField>();
+
+        waitingRoomTitle = waitingRoomObject.GetComponentInChildren<Text>();
 
         #region ButtonEvent
         /**
@@ -192,20 +201,50 @@ public class BackendUIManager : MonoBehaviour
 
         /**
          * makeRoom 버튼 이벤트
-         * 방 생성 시 waitingRoomObject로 넘어감
-         * 생성 취소 시 makeRoomObject 비활성화
+         * 방 만들기 클릭 시 waitingRoomObject로 넘어감
+         * 뒤로가기 클릭 시 makeRoomObject 비활성화
          */
         makeRoomConfirm.onClick.AddListener(() =>
         {
-            BackendMatchManager.GetInstance().CreateMatchRoom();
-            roomListObject.SetActive(false);
-            makeRoomObject.SetActive(false);
-            waitingRoomObject.SetActive(true);
+            if(BackendMatchManager.GetInstance().CreateMatchRoom())
+            {
+                roomListObject.SetActive(false);
+                makeRoomObject.SetActive(false);
+                waitingRoomObject.SetActive(true);
+                SetWaitingRoom(makeRoomTitle.text);
+                makeRoomTitle.text = null;
+            }
+            else
+            {
+                
+            }
         });
         makeRoomBack.onClick.AddListener(() =>
         {
             makeRoomObject.SetActive(false);
         });
+
+        /**
+         * waitingRoom 버튼 이벤트
+         * 게임시작 클릭 시 게임 시작됨
+         * 방 나가기 클릭 시 roomListObject로 돌아감
+         */
+        waitingRoomConfirm.onClick.AddListener(() =>
+        {
+            SceneManager.LoadScene("MainScene");
+        });
+        waitingRoomBack.onClick.AddListener(() =>
+        {
+            waitingRoomTitle.text = null;
+            waitingRoomObject.SetActive(false);
+            roomListObject.SetActive(true);
+        });
         #endregion
     }
+
+    public void SetWaitingRoom(string title)
+    {
+        waitingRoomTitle.text = title;
+    }
+
 }

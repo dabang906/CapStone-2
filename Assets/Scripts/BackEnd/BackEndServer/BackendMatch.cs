@@ -100,9 +100,9 @@ public partial class BackendMatchManager : MonoBehaviour
             Backend.Match.LeaveGameServer(); //인게임 서버 접속되어 있을 경우를 대비해 인게임 서버 리브 호출
         }
 
-        //nowMatchType = matchInfos[index].matchType;
-        //nowModeType = matchInfos[index].matchModeType;
-        //numOfClient = int.Parse(matchInfos[index].headCount);
+        nowMatchType = matchInfos[index].matchType;
+        nowModeType = matchInfos[index].matchModeType;
+        numOfClient = int.Parse(matchInfos[index].headCount);
     }
 
     // 매칭 신청 취소하기
