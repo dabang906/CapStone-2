@@ -207,10 +207,5 @@ public class BackendUIManager : MonoBehaviour
             makeRoomObject.SetActive(false);
         });
         #endregion
-
-        if (waitingRoomObject.activeSelf == true)
-        {
-            
-        }
     }
 }
