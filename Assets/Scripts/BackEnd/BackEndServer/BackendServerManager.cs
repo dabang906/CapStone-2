@@ -10,16 +10,7 @@ public class BackendServerManager : MonoBehaviour
     public static string myNickName { get; private set; } = string.Empty;  // 로그인한 계정의 닉네임
     public static string myIndate { get; private set; } = string.Empty;    // 로그인한 계정의 inDate
 
-    private void Awake()
-    {
-        if (instance != null)
-        {
-            Destroy(instance);
-        }
-        instance = this;
-        DontDestroyOnLoad(this.gameObject);
-    }
-
+    #region Basic Config
     public static BackendServerManager GetInstance()
     {
         if (instance == null)
@@ -29,6 +20,16 @@ public class BackendServerManager : MonoBehaviour
         }
 
         return instance;
+    }
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Destroy(instance);
+        }
+        instance = this;
+        DontDestroyOnLoad(this.gameObject);
     }
 
     private void Start()
@@ -51,7 +52,9 @@ public class BackendServerManager : MonoBehaviour
     {
         Backend.AsyncPoll();
     }
+    #endregion
 
+    #region User Account
     public bool CustomLogin(string id, string pw)
     {
         var bro = Backend.BMember.CustomLogin(id, pw);
@@ -59,9 +62,6 @@ public class BackendServerManager : MonoBehaviour
         if (bro.IsSuccess())
         {
             Debug.Log("로그인 성공 : " + bro);
-
-            ErrorInfo errorInfo;
-            Backend.Match.JoinMatchMakingServer(out errorInfo);
             OnPrevBackendAuthorized();
             return true;
         }
@@ -75,8 +75,6 @@ public class BackendServerManager : MonoBehaviour
     public void CustomLogout()
     {
         isLogin = false;
-        Backend.Match.LeaveMatchMakingServer();
-        Debug.Log(myNickName + " 로그아웃");
     }
 
     public bool CustomSignIn(string id, string nickname, string pw)
@@ -142,4 +140,5 @@ public class BackendServerManager : MonoBehaviour
             Debug.Log("유저 정보 불러오기 실패 : " + bro);
         }
     }
+    #endregion
 }

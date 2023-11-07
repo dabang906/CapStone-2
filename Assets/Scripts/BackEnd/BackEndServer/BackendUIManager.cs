@@ -1,9 +1,9 @@
+using BackEnd;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class BackendUIManager : MonoBehaviour
 {
-    private BackendServerManager manager;
     private static BackendUIManager instance;
 
     // 전환 Object
@@ -51,7 +51,6 @@ public class BackendUIManager : MonoBehaviour
 
     private void Start()
     {
-        manager = new BackendServerManager();
 
         titleObject.SetActive(true);
         loginObject.SetActive(false);
@@ -99,11 +98,12 @@ public class BackendUIManager : MonoBehaviour
 
             if (BackendServerManager.GetInstance().CustomLogin(id, pw))
             {
+                BackendMatchManager.GetInstance().JoinMatchServer();
                 loginField[0].text = null;
                 loginField[1].text = null;
                 loginObject.SetActive(false);
                 roomListObject.SetActive(true);
-                roomListShowNickname.text = "환영합니다, " + manager.GetUserNickName() + "님!";
+                roomListShowNickname.text = "환영합니다, " + BackendServerManager.GetInstance().GetUserNickName() + "님!";
             }
             else
             {
@@ -181,7 +181,9 @@ public class BackendUIManager : MonoBehaviour
         });
         roomListBack.onClick.AddListener(() =>
         {
-            manager.CustomLogout();
+            BackendServerManager.GetInstance().CustomLogout();
+            BackendMatchManager.GetInstance().LeaveMatchServer();
+            Backend.Match.LeaveMatchMakingServer();
             roomListObject.SetActive(false);
             makeRoomObject.SetActive(false);
             titleObject.SetActive(true);
@@ -195,6 +197,7 @@ public class BackendUIManager : MonoBehaviour
          */
         makeRoomConfirm.onClick.AddListener(() =>
         {
+            BackendMatchManager.GetInstance().CreateMatchRoom();
             roomListObject.SetActive(false);
             makeRoomObject.SetActive(false);
             waitingRoomObject.SetActive(true);
@@ -205,9 +208,9 @@ public class BackendUIManager : MonoBehaviour
         });
         #endregion
 
-        if(roomListObject.activeSelf == true)
+        if (waitingRoomObject.activeSelf == true)
         {
-
+            
         }
     }
 }
