@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class EatNumberTimer : MonoBehaviour
 {
@@ -41,7 +42,7 @@ public class EatNumberTimer : MonoBehaviour
                 timerRunning = false;
                 displayCount.fontSize = 30;
                 displayCount.text = "";
-                //SceneManager.LoadScene("MainScene");
+                SceneManager.LoadScene("MainScene");
             }
 
             // 시간을 텍스트로 표시
