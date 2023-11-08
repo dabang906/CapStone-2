@@ -9,17 +9,35 @@ public class Tile : MonoBehaviour
     public GameObject[] spawnPoints;
     public GameObject correct;
     public GameObject wrong;
+    public Text questionText;
 
     string expression; // 생성된 랜덤 식
     float result; // 식의 결과
+    List<int> numbers = new List<int>();
     // Start is called before the first frame update
     void Start()
     {
         GenerateRandomExpression();
-        
+        correct.GetComponentInChildren<Text>().text = result.ToString();
+        wrong.GetComponentInChildren<Text>().text = (result-2).ToString();
+        RandNum();
+        Instantiate(correct, spawnPoints[numbers[0]].transform.position,Quaternion.identity);
+        Instantiate(wrong, spawnPoints[numbers[1]].transform.position, Quaternion.identity);
+        Instantiate(wrong, spawnPoints[numbers[2]].transform.position, Quaternion.identity);
     }
 
+    void RandNum()
+    {
+        while (numbers.Count < 3)
+        {
+            int randomNumber = Random.Range(0, 3);
 
+            if (!numbers.Contains(randomNumber))
+            {
+                numbers.Add(randomNumber);
+            }
+        }
+    }
     void GenerateRandomExpression()
     {
         int num1 = Random.Range(1, 10); // 1부터 99까지의 랜덤 정수
@@ -60,7 +78,7 @@ public class Tile : MonoBehaviour
                 return;
         }
 
-        cardText.text = expression;// 텍스트 컴포넌트에 숫자식 할당 
+        questionText.text = expression;// 텍스트 컴포넌트에 숫자식 할당 
 
         Debug.Log("Generated expression: " + expression + " Result: " + result);
     }
