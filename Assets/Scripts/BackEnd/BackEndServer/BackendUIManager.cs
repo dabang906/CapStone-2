@@ -91,7 +91,11 @@ public class BackendUIManager : MonoBehaviour
 
         titleExit.onClick.AddListener(() =>
         {
-            Debug.Log("게임 종료!");
+            #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+            #else
+                Application.Quit();
+            #endif
         });
 
 
@@ -239,12 +243,15 @@ public class BackendUIManager : MonoBehaviour
             waitingRoomObject.SetActive(false);
             roomListObject.SetActive(true);
         });
-        #endregion
+#endregion
     }
 
     public void SetWaitingRoom(string title)
     {
         waitingRoomTitle.text = title;
-    }
+        if(BackendMatchManager.GetInstance().CreateMatchRoom())
+        {
 
+        }
+    }
 }
