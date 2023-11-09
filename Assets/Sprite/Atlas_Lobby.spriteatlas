@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Atlas_Lobby
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 10e5d1d924d36460f82740afe305df55, type: 3}
+    - {fileID: 2800000, guid: be162e94ccd19481cb4a8172e69a9207, type: 3}
+    - {fileID: 2800000, guid: 2eb341b1488fe45a49fbc36c3cf943cd, type: 3}
+    - {fileID: 2800000, guid: 47d2bb8e7bf7646ccbf83e70085d974c, type: 3}
+    - {fileID: 2800000, guid: ed6dadfb8539241559f3aed18c0b4af7, type: 3}
+    - {fileID: 2800000, guid: 42f63e590011b46fdb529e6f3b0e0e86, type: 3}
+    - {fileID: 2800000, guid: 6370814deb6734ae583f36d31e20ebde, type: 3}
+    - {fileID: 2800000, guid: 279c461a6c64446c3a99a6750594863f, type: 3}
+    totalSpriteSurfaceArea: 21471
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 2eb341b1488fe45a49fbc36c3cf943cd, type: 3}
+  - {fileID: 21300000, guid: be162e94ccd19481cb4a8172e69a9207, type: 3}
+  - {fileID: 21300000, guid: 42f63e590011b46fdb529e6f3b0e0e86, type: 3}
+  - {fileID: 21300000, guid: 10e5d1d924d36460f82740afe305df55, type: 3}
+  - {fileID: 21300000, guid: 279c461a6c64446c3a99a6750594863f, type: 3}
+  - {fileID: 21300000, guid: ed6dadfb8539241559f3aed18c0b4af7, type: 3}
+  - {fileID: 21300000, guid: 6370814deb6734ae583f36d31e20ebde, type: 3}
+  - {fileID: 21300000, guid: 47d2bb8e7bf7646ccbf83e70085d974c, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - mmr
+  - box-checked
+  - selected_mmr
+  - box
+  - selected_random
+  - ramdom
+  - selected_point
+  - point
+  m_Tag: Atlas_Lobby
+  m_IsVariant: 0
