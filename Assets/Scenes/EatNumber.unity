@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.28171372, g: 0.38394585, b: 0.51188666, a: 1}
+  m_IndirectSpecularColor: {r: 0.28196955, g: 0.38404563, b: 0.5119423, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -697,8 +697,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8283026848d16444da6d7cbd21346895, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Card: {fileID: 2093594558268801879, guid: 84e8d13fa834a47bab132f787079d038, type: 3}
-  OPCard: {fileID: 2093594558268801879, guid: d570dc0920c9b4b49b3ac149af2dc505, type: 3}
+  Card: {fileID: 2093594558268801879, guid: d570dc0920c9b4b49b3ac149af2dc505, type: 3}
+  OPCard: {fileID: 2093594558268801879, guid: 84e8d13fa834a47bab132f787079d038, type: 3}
   CardSpawnTime: 2
   CardDrag: 3
   OPCardSpawnTime: 2
@@ -977,7 +977,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 'Number : 0'
 --- !u!222 &1724281233
 CanvasRenderer:
   m_ObjectHideFlags: 0
