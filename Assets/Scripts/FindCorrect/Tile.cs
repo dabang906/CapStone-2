@@ -14,10 +14,6 @@ public class Tile : MonoBehaviour
     string expression; // ������ ���� ��
     float result; // ���� ���
     List<int> numbers = new List<int>();
-    public Text cardText;
-
-    string expression; // ������ ���� ��
-    float result; // ���� ���
     // Start is called before the first frame update
     void Start()
     {
@@ -82,12 +78,7 @@ public class Tile : MonoBehaviour
                 return;
         }
 
-<<<<<<< HEAD
-        questionText.text = expression;// �ؽ�Ʈ ������Ʈ�� ���ڽ� �Ҵ� 
-=======
-        cardText.text = expression;// �ؽ�Ʈ ������Ʈ�� ���ڽ� �Ҵ� 
->>>>>>> 2d6229ced74649adbc8aaf87002b8b8d8ad2d96c
-
+        questionText.text = expression;
         Debug.Log("Generated expression: " + expression + " Result: " + result);
     }
     // Update is called once per frame

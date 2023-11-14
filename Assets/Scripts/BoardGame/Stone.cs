@@ -12,10 +12,14 @@ public class Stone : MonoBehaviour
     public static int diceNum;
     public int steps;
 
+    Dice dice;
+    Transform playerTransform;
     bool isMoving;
     SphereCollider sphereCollider;
     bool hasRolledDice;  // 주사위를 굴렸는지 여부를 저장하는 변수
     void Awake() {
+        dice = FindObjectOfType<Dice>();
+        playerTransform= transform;
         routePosition++;
         sphereCollider = GetComponentInChildren<SphereCollider>();
         sphereCollider.isTrigger = true;
@@ -24,7 +28,6 @@ public class Stone : MonoBehaviour
     {
         if (!isMoving && diceNum != 0 && !hasRolledDice)
         {
-            DiceCheckZone.isTrigger = false;
             steps = diceNum;
             Debug.Log("Dice Rolled: " + steps);
             hasRolledDice = true;  // 주사위를 굴렸음을 표시
@@ -39,6 +42,7 @@ public class Stone : MonoBehaviour
             yield break;
         }
 
+        transform.rotation = Quaternion.LookRotation(playerTransform.forward);
         isMoving = true;
 
         while (steps > 0)
@@ -66,14 +70,15 @@ public class Stone : MonoBehaviour
 
         }
         isMoving = false;
-        hasRolledDice = false;  // 이동이 끝났으므로 다음 주사위 굴림을 허용
+        dice.isRolling = false;  // 이동이 끝났으므로 다음 주사위 굴림을 허용
         sphereCollider.isTrigger = true;
         count++;
         diceNum = 0;
+        hasRolledDice= false;
 
-        if(count %4 == 0)
+        if (count %4 == 0)
         {
-            SceneManager.LoadScene(Random.RandomRange(1, 4));
+            SceneManager.LoadScene(Random.RandomRange(4, 8));
         }
     }
 
