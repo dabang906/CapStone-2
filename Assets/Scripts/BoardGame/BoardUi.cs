@@ -16,7 +16,7 @@ public class BoardUi : MonoBehaviour
     }
     void Update()
     {
-        
+        coinText.text = stone.coin.ToString();
     }
     void OnTriggerEnter(Collider other)
     {

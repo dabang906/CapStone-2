@@ -20,7 +20,7 @@ public class Stone : MonoBehaviour
     void Awake() {
         dice = FindObjectOfType<Dice>();
         playerTransform= transform;
-        routePosition++;
+        if(routePosition == 0) routePosition+=2;
         sphereCollider = GetComponentInChildren<SphereCollider>();
         sphereCollider.isTrigger = true;
     }
@@ -28,7 +28,7 @@ public class Stone : MonoBehaviour
     {
         if (!isMoving && diceNum != 0 && !hasRolledDice)
         {
-            steps = diceNum;
+            steps = diceNum * 2;
             Debug.Log("Dice Rolled: " + steps);
             hasRolledDice = true;  // 주사위를 굴렸음을 표시
             StartCoroutine(Move());
@@ -55,7 +55,7 @@ public class Stone : MonoBehaviour
             }
 
             routePosition %= currentRoute.childNodeList.Count;
-
+            if (routePosition == 0) coin += 10;
             Vector3 nextPos = currentRoute.childNodeList[routePosition].position;
             while (MoveToNextNode(nextPos))
             {
@@ -75,11 +75,11 @@ public class Stone : MonoBehaviour
         count++;
         diceNum = 0;
         hasRolledDice= false;
-
+        /*
         if (count %4 == 0)
         {
             SceneManager.LoadScene(Random.RandomRange(4, 8));
-        }
+        }*/
     }
 
     bool MoveToNextNode(Vector3 goal)
