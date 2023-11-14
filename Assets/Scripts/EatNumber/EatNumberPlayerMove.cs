@@ -18,13 +18,16 @@ public class Eatnum1PlayerMove : MonoBehaviour
     private string op;
     private bool freeze;
 
+    Animator anim;
+    int Walk;
     private void Start()
     {
         numCount = 0;
         resultCount = 0;
         num1 = 0;
         num2 = 0;
-
+        anim = GetComponentInChildren<Animator>();
+        Walk = Animator.StringToHash("Walk");
         Freeze();
 
         Invoke("UnFreeze", 5.0f);
@@ -37,12 +40,16 @@ public class Eatnum1PlayerMove : MonoBehaviour
             if (Input.GetKey(KeyCode.A))
             {
                 transform.position += Vector3.left * movePower * Time.deltaTime;
+                transform.rotation = Quaternion.Euler(0f, 90f, 0f);
+                anim.SetBool(Walk, true);
             }
             if (Input.GetKey(KeyCode.D))
             {
                 transform.position += Vector3.right * movePower * Time.deltaTime;
+                transform.rotation = Quaternion.Euler(0f, -90f, 0f);
+                anim.SetBool(Walk, true);
             }
-        }  
+        }
     }
 
     private void OnTriggerEnter(Collider other)

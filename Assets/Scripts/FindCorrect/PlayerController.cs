@@ -12,12 +12,16 @@ public class PlayerController : MonoBehaviour
     public float laneDistance = 4f;
     public int correct = 0;
     public int wrong = 0;
+    private Animator anim;
+    int Run;
     int desiredLane = 1;    //0:left 1:middle 2:right
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponentInChildren<Animator>();
         timer = FindObjectOfType<Timer>();
         controller = GetComponent<CharacterController>();
+        Run = Animator.StringToHash("Run");
     }
 
     // Update is called once per frame
@@ -25,6 +29,7 @@ public class PlayerController : MonoBehaviour
     {
         if (timer.timerRunning)
         {
+            anim.SetBool(Run, true);
             direction.z = forwardSpeed;
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {

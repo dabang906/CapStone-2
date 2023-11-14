@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class BoxHitPlayerMove : MonoBehaviour
 {
-    Rigidbody rig;
-
     public int jumpPower;
 
+    Rigidbody rig;
     bool isJump;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +15,6 @@ public class BoxHitPlayerMove : MonoBehaviour
         rig = GetComponent<Rigidbody>();
 
         Freeze();
-
         Invoke("UnFreeze", 5.0f);
         Invoke("Freeze", 15.0f);
     }
