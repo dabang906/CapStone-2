@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: d54a881b830cae544a72985daaece999
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _NormalTexture: {fileID: 2800000, guid: 6cb123095ca4b4e4680773312ba1c076, type: 3}
+  - _FoamTexture: {fileID: 2800000, guid: 0d05b23ea2d999b47825c6c522e25adc, type: 3}
+  - _ReflectionTex: {fileID: 2800000, guid: ef5d03cb57f820145b89db1123c104c6, type: 3}
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
