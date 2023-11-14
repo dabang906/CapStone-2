@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class Dice : MonoBehaviour {
     public Sprite[] diceImages; // 주사위 이미지 배열 (6면체 주사위 이미지를 가정)
     public float rollTime = 2f; // 주사위가 돌아가는 시간
+    public int diceNum;
 
     private Camera mainCamera;
     private Image image;
@@ -50,7 +51,7 @@ public class Dice : MonoBehaviour {
 
         // 주사위가 멈춘 후 최종 결과 이미지를 표시
         image.sprite = diceImages[finalIndex];
-
+        Stone.diceNum = finalIndex + 1;
         isRolling = false;
     }
 }
