@@ -16,12 +16,15 @@ public class EatNumberSpawnManager : MonoBehaviour
     public bool freeze;
 
     private GameObject item;
-    private int count = 0;
-    private float time = 0;
+    private int count;
+    private float time;
 
     private void Start()
     {
         Freeze();
+
+        count = 0;
+        time = 0;
 
         Invoke("UnFreeze", 0f);
         Invoke("Freeze", 35.0f);
