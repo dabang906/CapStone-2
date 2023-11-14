@@ -15,7 +15,7 @@ public class Eatnum1PlayerMove : MonoBehaviour
     private int result;
     private int numCount;
     private int resultCount;
-    private string op;
+    private string OpBox;
     private bool freeze;
 
     Animator anim;
@@ -72,7 +72,7 @@ public class Eatnum1PlayerMove : MonoBehaviour
             }
             if (resultCount == 1)
             {
-                switch (op)
+                switch (OpBox)
                 {
                     case "+":
                         result = num1 + num2;
@@ -97,7 +97,7 @@ public class Eatnum1PlayerMove : MonoBehaviour
                 switch(numCount)
                 {
                     case 0:
-                        switch (op)
+                        switch (OpBox)
                         {
                             case "+":
                                 result = result + num2;
@@ -118,7 +118,7 @@ public class Eatnum1PlayerMove : MonoBehaviour
                         }
                         break;
                     case 1:
-                        switch (op)
+                        switch (OpBox)
                         {
                             case "+":
                                 result = result + num1;
@@ -142,10 +142,10 @@ public class Eatnum1PlayerMove : MonoBehaviour
             }
             text.text = "Number : " + result.ToString();
         }
-        if(other.tag == "OPBox")
+        if(other.tag == "OpBox")
         {
-            op = other.GetComponent<EatNumberOPCard>().text;
-            Debug.Log("op eat");
+            OpBox = other.GetComponent<EatNumberOPCard>().text;
+            Debug.Log("OpBox eat");
             resultCount++;
         }
     }
