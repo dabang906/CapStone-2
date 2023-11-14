@@ -49,7 +49,7 @@ public class LoginUI : MonoBehaviour
     {
         mainTitle.SetActive(false);
         touchStart.SetActive(false);
-        subTitle.SetActive(true);
+        subTitle.SetActive(false);
         loginObject.SetActive(false);
         customLoginObject.SetActive(true);
         signUpObject.SetActive(false);
