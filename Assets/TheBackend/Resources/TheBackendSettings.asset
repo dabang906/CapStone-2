@@ -12,18 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 660911240, guid: f624596d5fe1bd5459a5da424a8abc1b, type: 3}
   m_Name: TheBackendSettings
   m_EditorClassIdentifier: 
-  clientAppID: 58d8b920-72fb-11ee-a5bd-e541c70f12cf5952
-  signatureKey: 58d8b921-72fb-11ee-a5bd-e541c70f12cf5952
+  clientAppID: ad2e8e50-7ef9-11ee-8796-d9fc3a38c1ea6116
+  signatureKey: ad2eb560-7ef9-11ee-8796-d9fc3a38c1ea6116
   functionAuthKey: 
   packageName: com.DefaultCompany.Capstone2
   isAllPlatform: 1
   sendLogReport: 1
   rateCountActive: 0
   timeOutSec: 100
-  Version: 5.11.1
+  Version: 5.9.0
   autoRefreshToken: 1
   retryWhenClientRequestFailError: 1
   retryWhenServerError: 1
   retryWhenBadSignatureError: 1
   initFailWhenDeviceIdUnknown: 1
-  autoLoadLocationProperties: 1

@@ -58,14 +58,7 @@ public class BackEndServerManager : MonoBehaviour
 
         if (bro.IsSuccess())
         {
-
-#if UNITY_ANDROID
-            Debug.Log("GoogleHash - " + Backend.Utils.GetGoogleHash());
-#endif
-#if !UNITY_EDITOR
-            //안드로이드, iOS 환경에서만 작동
-            GetVersionInfo();
-#endif
+            Debug.Log("뒤끝 초기화 성공 : " + bro);
         }
         else
         {
