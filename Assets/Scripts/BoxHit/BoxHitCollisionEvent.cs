@@ -58,7 +58,7 @@ public class BoxHitCollisionEvent : MonoBehaviour
                 timerRunning = false;
                 displayCount.fontSize = 30;
                 displayCount.text = "남은 횟수 : " + count.ToString();
-                //SceneManager.LoadScene("MainScene");
+                SceneManager.LoadScene("MainScene");
             }
 
             // 시간을 텍스트로 표시

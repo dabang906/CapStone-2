@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Atlas_Btn
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 950cbb2cc613c4606925148c99ca6f3b, type: 3}
+    - {fileID: 2800000, guid: 8465ee5acf3c8452db9d5ca667bb05f3, type: 3}
+    - {fileID: 2800000, guid: 272ed12636f044d5cad953750710832f, type: 3}
+    - {fileID: 2800000, guid: 948e7cf619c494ec6b9d92b706e79005, type: 3}
+    - {fileID: 2800000, guid: 89bff25d16dc14b2faaa21006ff2e3fb, type: 3}
+    - {fileID: 2800000, guid: 36e76897d1e814d14811d784a0a55f9a, type: 3}
+    totalSpriteSurfaceArea: 216192
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 272ed12636f044d5cad953750710832f, type: 3}
+  - {fileID: 21300000, guid: 948e7cf619c494ec6b9d92b706e79005, type: 3}
+  - {fileID: 21300000, guid: 36e76897d1e814d14811d784a0a55f9a, type: 3}
+  - {fileID: 21300000, guid: 8465ee5acf3c8452db9d5ca667bb05f3, type: 3}
+  - {fileID: 21300000, guid: 950cbb2cc613c4606925148c99ca6f3b, type: 3}
+  - {fileID: 21300000, guid: 89bff25d16dc14b2faaa21006ff2e3fb, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - login
+  - ok
+  - loading_icon
+  - button
+  - select
+  - policy
+  m_Tag: Atlas_Btn
+  m_IsVariant: 0
