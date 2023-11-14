@@ -12,6 +12,7 @@ public class Stone : MonoBehaviour
     public static int diceNum;
     public int steps;
 
+    List<int> numbers = new List<int>();
     Dice dice;
     Transform playerTransform;
     bool isMoving;
@@ -75,16 +76,28 @@ public class Stone : MonoBehaviour
         count++;
         diceNum = 0;
         hasRolledDice= false;
-        /*
+        
         if (count %4 == 0)
         {
             SceneManager.LoadScene(Random.RandomRange(4, 8));
-        }*/
+        }
     }
 
     bool MoveToNextNode(Vector3 goal)
     {
         return goal != (transform.position = Vector3.MoveTowards(transform.position, goal, 2f * Time.deltaTime));
+    }
+    void RandNum()
+    {
+        while (numbers.Count < 3)
+        {
+            int randomNumber = Random.Range(0, 3);
+
+            if (!numbers.Contains(randomNumber))
+            {
+                numbers.Add(randomNumber);
+            }
+        }
     }
 
     void OnTriggerEnter(Collider other)

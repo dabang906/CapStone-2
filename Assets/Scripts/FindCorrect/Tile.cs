@@ -11,8 +11,8 @@ public class Tile : MonoBehaviour
     public GameObject wrong;
     public Text questionText;
 
-    string expression; // ������ ���� ��
-    float result; // ���� ���
+    string expression;
+    float result;
     List<int> numbers = new List<int>();
     // Start is called before the first frame update
     void Start()

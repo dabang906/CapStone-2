@@ -439,7 +439,7 @@ MonoBehaviour:
   displayCount: {fileID: 1949630280}
   timerText: {fileID: 2101613452}
   text: {fileID: 2027275940}
---- !u!1 &291627589
+--- !u!1 &420955128
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -447,24 +447,24 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 291627593}
-  - component: {fileID: 291627592}
-  - component: {fileID: 291627591}
-  - component: {fileID: 291627590}
+  - component: {fileID: 420955132}
+  - component: {fileID: 420955131}
+  - component: {fileID: 420955130}
+  - component: {fileID: 420955129}
   m_Layer: 0
   m_Name: Plane
-  m_TagString: Plane
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!64 &291627590
+--- !u!64 &420955129
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 291627589}
+  m_GameObject: {fileID: 420955128}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -480,14 +480,14 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &291627591
+--- !u!23 &420955130
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 291627589}
-  m_Enabled: 1
+  m_GameObject: {fileID: 420955128}
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -522,21 +522,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &291627592
+--- !u!33 &420955131
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 291627589}
+  m_GameObject: {fileID: 420955128}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &291627593
+--- !u!4 &420955132
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 291627589}
+  m_GameObject: {fileID: 420955128}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -662,6 +662,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 5713385693080324717, guid: fbe059ca1e96c2e4dac2221825bc4fea, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5713385693080324717, guid: fbe059ca1e96c2e4dac2221825bc4fea, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5713385693080324717, guid: fbe059ca1e96c2e4dac2221825bc4fea, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5713385693080324717, guid: fbe059ca1e96c2e4dac2221825bc4fea, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -671,7 +683,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5713385693080324717, guid: fbe059ca1e96c2e4dac2221825bc4fea, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 2.15
       objectReference: {fileID: 0}
     - target: {fileID: 5713385693080324717, guid: fbe059ca1e96c2e4dac2221825bc4fea, type: 3}
       propertyPath: m_LocalRotation.w
@@ -704,6 +716,10 @@ PrefabInstance:
     - target: {fileID: 6915955599679462830, guid: fbe059ca1e96c2e4dac2221825bc4fea, type: 3}
       propertyPath: m_Name
       value: MiniGameBackGround
+      objectReference: {fileID: 0}
+    - target: {fileID: 6915955599679462830, guid: fbe059ca1e96c2e4dac2221825bc4fea, type: 3}
+      propertyPath: m_TagString
+      value: Plane
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1008,8 +1024,8 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: 
 --- !u!222 &1949630281
@@ -1238,11 +1254,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1339510341}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -16, y: 544.99054}
-  m_SizeDelta: {x: 258.8677, y: 47.0095}
-  m_Pivot: {x: 1, y: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -50}
+  m_SizeDelta: {x: 258.86768, y: 47.00952}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &2101613452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1265,16 +1281,16 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 30
+    m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 3
-    m_MaxSize: 40
+    m_MaxSize: 50
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: 'Time : 00:10'
 --- !u!222 &2101613453
@@ -1292,8 +1308,8 @@ SceneRoots:
   - {fileID: 200749948}
   - {fileID: 1776069779}
   - {fileID: 252320591}
-  - {fileID: 291627593}
   - {fileID: 2000375633}
   - {fileID: 1339510341}
   - {fileID: 1755308626}
   - {fileID: 1534017272}
+  - {fileID: 420955132}
