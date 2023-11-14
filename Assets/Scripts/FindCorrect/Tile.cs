@@ -11,9 +11,13 @@ public class Tile : MonoBehaviour
     public GameObject wrong;
     public Text questionText;
 
-    string expression; // »ý¼ºµÈ ·£´ý ½Ä
-    float result; // ½ÄÀÇ °á°ú
+    string expression; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+    float result; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
     List<int> numbers = new List<int>();
+    public Text cardText;
+
+    string expression; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+    float result; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
     // Start is called before the first frame update
     void Start()
     {
@@ -40,11 +44,11 @@ public class Tile : MonoBehaviour
     }
     void GenerateRandomExpression()
     {
-        int num1 = Random.Range(1, 10); // 1ºÎÅÍ 99±îÁöÀÇ ·£´ý Á¤¼ö
-        int num2 = Random.Range(1, 10); // 1ºÎÅÍ 99±îÁöÀÇ ·£´ý Á¤¼ö
+        int num1 = Random.Range(1, 10); // 1ï¿½ï¿½ï¿½ï¿½ 99ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        int num2 = Random.Range(1, 10); // 1ï¿½ï¿½ï¿½ï¿½ 99ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
         string[] operators = { "+", "-", "*", "/" };
-        string op = operators[Random.Range(0, operators.Length)]; // ¿¬»êÀÚ ¹è¿­¿¡¼­ ¹«ÀÛÀ§·Î ¼±ÅÃ
+        string op = operators[Random.Range(0, operators.Length)]; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
         switch (op)
         {
@@ -78,7 +82,11 @@ public class Tile : MonoBehaviour
                 return;
         }
 
-        questionText.text = expression;// ÅØ½ºÆ® ÄÄÆ÷³ÍÆ®¿¡ ¼ýÀÚ½Ä ÇÒ´ç 
+<<<<<<< HEAD
+        questionText.text = expression;// ï¿½Ø½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½Ú½ï¿½ ï¿½Ò´ï¿½ 
+=======
+        cardText.text = expression;// ï¿½Ø½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½Ú½ï¿½ ï¿½Ò´ï¿½ 
+>>>>>>> 2d6229ced74649adbc8aaf87002b8b8d8ad2d96c
 
         Debug.Log("Generated expression: " + expression + " Result: " + result);
     }
