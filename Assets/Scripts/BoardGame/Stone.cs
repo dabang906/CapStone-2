@@ -1,29 +1,56 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class Stone : MonoBehaviour
 {
+    private static Stone instance = null;
     public Route currentRoute;
     public int count = 0;
 
     int routePosition;
-    public int coin = 20;
+    public int coin = 10;
     public static int diceNum;
     public int steps;
 
     List<int> numbers = new List<int>();
     Dice dice;
-    Transform playerTransform;
     bool isMoving;
     SphereCollider sphereCollider;
     bool hasRolledDice;  // 주사위를 굴렸는지 여부를 저장하는 변수
     void Awake() {
+        #region 싱글톤
+        /*
+        if (null == instance)
+        {
+            //이 클래스 인스턴스가 탄생했을 때 전역변수 instance에 게임매니저 인스턴스가 담겨있지 않다면, 자신을 넣어준다.
+            instance = this;
+
+            //씬 전환이 되더라도 파괴되지 않게 한다.
+            //gameObject만으로도 이 스크립트가 컴포넌트로서 붙어있는 Hierarchy상의 게임오브젝트라는 뜻이지만, 
+            //나는 헷갈림 방지를 위해 this를 붙여주기도 한다.
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            //만약 씬 이동이 되었는데 그 씬에도 Hierarchy에 GameMgr이 존재할 수도 있다.
+            //그럴 경우엔 이전 씬에서 사용하던 인스턴스를 계속 사용해주는 경우가 많은 것 같다.
+            //그래서 이미 전역변수인 instance에 인스턴스가 존재한다면 자신(새로운 씬의 GameMgr)을 삭제해준다.
+            Destroy(this.gameObject);
+        }*/
+        #endregion
+        if (PlayerPrefs.HasKey("routePosition"))
+        {
+            routePosition = PlayerPrefs.GetInt("routePosition")-1;
+            this.transform.position = currentRoute.childNodeList[routePosition/2].position;
+            PlayerPrefs.DeleteAll();
+        }
+        RandNum();
         dice = FindObjectOfType<Dice>();
-        playerTransform= transform;
         if(routePosition == 0) routePosition+=2;
         sphereCollider = GetComponentInChildren<SphereCollider>();
-        sphereCollider.isTrigger = true;
+        sphereCollider.isTrigger = false;
     }
     void Update()
     {
@@ -35,15 +62,18 @@ public class Stone : MonoBehaviour
             StartCoroutine(Move());
         }
     }
-
+    void OnEnable()
+    {
+        Debug.Log("Enable");
+        if (SceneManager.GetActiveScene().name == "MainScene") this.gameObject.SetActive(true);
+        if (SceneManager.GetActiveScene().name != "MainScene") this.gameObject.SetActive(false);
+    }
     IEnumerator Move()
     {
         if (isMoving)
         {
             yield break;
         }
-
-        transform.rotation = Quaternion.LookRotation(playerTransform.forward);
         isMoving = true;
 
         while (steps > 0)
@@ -77,9 +107,11 @@ public class Stone : MonoBehaviour
         diceNum = 0;
         hasRolledDice= false;
         
-        if (count %4 == 0)
+        if (count %2 == 0)
         {
-            SceneManager.LoadScene(Random.RandomRange(4, 8));
+            PlayerPrefs.SetInt("routePosition", routePosition);
+            SceneManager.LoadScene(4);
+            //SceneManager.LoadScene(numbers[0]);
         }
     }
 
@@ -91,7 +123,7 @@ public class Stone : MonoBehaviour
     {
         while (numbers.Count < 3)
         {
-            int randomNumber = Random.Range(0, 3);
+            int randomNumber = Random.Range(4, 8);
 
             if (!numbers.Contains(randomNumber))
             {
