@@ -3231,9 +3231,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 748305539}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 0.06, z: 3}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.7, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 0.04, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4466901719536103}
@@ -3255,7 +3255,7 @@ Transform:
   - {fileID: 6269227848734991627}
   - {fileID: 6799741440366265541}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &750186094
 GameObject:
   m_ObjectHideFlags: 0
@@ -3842,7 +3842,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentRoute: {fileID: 1845173603}
   count: 0
-  coin: 20
+  coin: 10
   steps: 0
 --- !u!1 &890880838
 GameObject:
@@ -7623,7 +7623,7 @@ GameObject:
   - component: {fileID: 1845173602}
   - component: {fileID: 1845173603}
   m_Layer: 0
-  m_Name: Route2
+  m_Name: Route1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
