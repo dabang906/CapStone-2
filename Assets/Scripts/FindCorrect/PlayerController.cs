@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     Timer timer;
     
     public float forwardSpeed;
-    public float laneDistance = 4f;
+    public float laneDistance = 2f;
     public int correct = 0;
     public int wrong = 0;
     private Animator anim;
