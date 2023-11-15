@@ -8,7 +8,7 @@ public class Stone : MonoBehaviour
     public int count = 0;
 
     int routePosition;
-    public int coin = 20;
+    public int coin;
     public static int diceNum;
     public int steps;
 
@@ -56,7 +56,7 @@ public class Stone : MonoBehaviour
             }
 
             routePosition %= currentRoute.childNodeList.Count;
-            if (routePosition == 0) coin += 10;
+            //if (routePosition == 0) coin += 10;
             Vector3 nextPos = currentRoute.childNodeList[routePosition].position;
             while (MoveToNextNode(nextPos))
             {
@@ -79,7 +79,7 @@ public class Stone : MonoBehaviour
         
         if (count %4 == 0)
         {
-            SceneManager.LoadScene(Random.RandomRange(4, 8));
+            SceneManager.LoadScene(Random.Range(4, 8));
         }
     }
 
