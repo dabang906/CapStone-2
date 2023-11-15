@@ -11,7 +11,9 @@ public class BoardUi : MonoBehaviour
     Stone stone;
     void Start()
     {
+        PlayerData.GetInstance().GameDataUpdate();
         stone = FindObjectOfType<Stone>();
+        stone.coin = PlayerData.GetInstance().GameDataGet("coin");
         coinText.text = stone.coin.ToString();
     }
     void Update()
@@ -23,11 +25,13 @@ public class BoardUi : MonoBehaviour
         if(other.gameObject.tag == "Red")
         {
             stone.coin -= 5;
+            PlayerData.GetInstance().CoinDown();
             coinText.text = stone.coin.ToString();
         }
         if (other.gameObject.tag == "Blue")
         {
             stone.coin += 5;
+            PlayerData.GetInstance().CoinUp();
             coinText.text = stone.coin.ToString();
         }
         if(other.gameObject.tag == "Lucky")

@@ -86,7 +86,7 @@ public class Stone : MonoBehaviour
             }
 
             routePosition %= currentRoute.childNodeList.Count;
-            if (routePosition == 0) coin += 10;
+            //if (routePosition == 0) coin += 10;
             Vector3 nextPos = currentRoute.childNodeList[routePosition].position;
             while (MoveToNextNode(nextPos))
             {
