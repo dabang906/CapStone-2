@@ -128,7 +128,7 @@ public class LoginUI : MonoBehaviour
                 }
                 mainTitle.SetActive(false);
                 touchStart.SetActive(false);
-                subTitle.SetActive(true);
+                subTitle.SetActive(false);
                 //customLoginObject.SetActive(true);
                 loginObject.SetActive(true);
             });
@@ -207,7 +207,7 @@ public class LoginUI : MonoBehaviour
         {
             mainTitle.SetActive(false);
             touchStart.SetActive(false);
-            subTitle.SetActive(true);
+            subTitle.SetActive(false);
             loginObject.SetActive(false);
             customLoginObject.SetActive(false);
             signUpObject.SetActive(false);
