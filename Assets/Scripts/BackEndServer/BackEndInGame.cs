@@ -87,6 +87,8 @@ public partial class BackEndMatchManager : MonoBehaviour
 
         Debug.Log(string.Format(SUCCESS_ACCESS_INGAME, args.ErrInfo));
 
+        PlayerData.GetInstance().GameDataInsert();
+
         if (args.ErrInfo != ErrorCode.Success)
         {
             // 게임 룸 접속 실패
