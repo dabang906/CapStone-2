@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Eatnum1PlayerMove : MonoBehaviour
+public class EatNumPlayerMove : MonoBehaviour
 {
     public Text text;
 
@@ -12,12 +12,14 @@ public class Eatnum1PlayerMove : MonoBehaviour
 
     private int num1;
     private int num2;
-    private int result;
+    [HideInInspector]
+    public int result;
     private int numCount;
     private int resultCount;
     private string OpBox;
     private bool freeze;
 
+    EatNumberTimer eatNumberTimer;
     Animator anim;
     int Walk;
     private void Start()
@@ -27,16 +29,14 @@ public class Eatnum1PlayerMove : MonoBehaviour
         num1 = 0;
         num2 = 0;
         anim = GetComponentInChildren<Animator>();
+        eatNumberTimer = FindObjectOfType<EatNumberTimer>();
         Walk = Animator.StringToHash("Walk");
-        Freeze();
-
-        Invoke("UnFreeze", 5.0f);
-        Invoke("Freeze", 35.0f);
+        
     }
 
     private void FixedUpdate()
     {
-        if (freeze) { 
+        if (eatNumberTimer.timerRunning) { 
             if (Input.GetKey(KeyCode.A))
             {
                 transform.position += Vector3.left * movePower * Time.deltaTime;
@@ -148,15 +148,5 @@ public class Eatnum1PlayerMove : MonoBehaviour
             Debug.Log("OpBox eat");
             resultCount++;
         }
-    }
-
-    void Freeze()
-    {
-        freeze = false;
-    }
-
-    void UnFreeze()
-    {
-        freeze = true;
     }
 }

@@ -10,17 +10,22 @@ public class EatNumberTimer : MonoBehaviour
     public Text timerText;
     public Text text;
     public bool timerRunning = false;
+    public GameObject explanation;
+    public GameObject result;
+
     private float time = 30.0f;
     private float startTime;
     private float elapsedTime;
 
+    Text resultText;
+    EatNumPlayerMove eatNumPlayerMove;
     // Start is called before the first frame update
     void Start()
     {
         ResetTimer();
-
-        StartCoroutine("DisplayCount");
-
+        resultText = result.GetComponentInChildren<Text>();
+        eatNumPlayerMove = FindObjectOfType<EatNumPlayerMove>();
+        StartCoroutine(ExplanationTime());
     }
 
     // Update is called once per frame
@@ -42,12 +47,22 @@ public class EatNumberTimer : MonoBehaviour
                 timerRunning = false;
                 displayCount.fontSize = 30;
                 displayCount.text = "";
-                SceneManager.LoadScene("MainScene");
+                StartCoroutine(ResultOn());
             }
 
             // 시간을 텍스트로 표시
             timerText.text = "Time : " + FormatTime(remainingTime);
         }
+    }
+
+    IEnumerator ExplanationTime()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            yield return new WaitForSeconds(1f);
+        }
+        explanation.SetActive(false);
+        StartCoroutine(DisplayCount());
     }
 
     IEnumerator DisplayCount()
@@ -59,6 +74,17 @@ public class EatNumberTimer : MonoBehaviour
         displayCount.text = "";
         StartTimer();
         yield return null;
+    }
+
+    IEnumerator ResultOn()
+    {
+        result.SetActive(true);
+        resultText.text = "YourNumber : " + eatNumPlayerMove.result.ToString();
+        for (int i = 0; i < 5; i++)
+        {
+            yield return new WaitForSeconds(1f);
+        }
+        SceneManager.LoadScene("MainScene");
     }
 
     public void StartTimer()

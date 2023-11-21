@@ -19,22 +19,20 @@ public class EatNumberSpawnManager : MonoBehaviour
     private int count;
     private float time;
 
+    EatNumberTimer timer;
     private void Start()
     {
-        Freeze();
-
         count = 0;
         time = 0;
 
-        Invoke("UnFreeze", 0f);
-        Invoke("Freeze", 35.0f);
+        timer = FindObjectOfType<EatNumberTimer>();
     }
 
     // Update is called once per frame
     void Update()
     {
         this.time += Time.deltaTime;
-        if ((this.time >= this.CardSpawnTime) && freeze)
+        if ((this.time >= this.CardSpawnTime) && timer.timerRunning)
         {
             this.time = 0;
             if (count == 0)
@@ -53,15 +51,5 @@ public class EatNumberSpawnManager : MonoBehaviour
             item.transform.position = new Vector3(Random.Range(-3, 4), 20, 0);
 
         }
-    }
-
-    void Freeze()
-    {
-        freeze = false;
-    }
-
-    void UnFreeze()
-    {
-        freeze = true;
     }
 }

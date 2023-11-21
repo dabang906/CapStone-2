@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -5,6 +6,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class Stone : MonoBehaviour
 {
+    public enum GameState
+    {
+        Idle,
+        DicePlus,
+        AllUp,
+        OpenShop,
+    }
+    public GameState diceState;
     private static Stone instance = null;
     public Route currentRoute;
     public int count = 0;
@@ -13,12 +22,14 @@ public class Stone : MonoBehaviour
     public int coin = 10;
     public static int diceNum;
     public int steps;
+    public GameObject shop;
 
     List<int> numbers = new List<int>();
     Dice dice;
     bool isMoving;
     SphereCollider sphereCollider;
     bool hasRolledDice;  // 주사위를 굴렸는지 여부를 저장하는 변수
+
     void Awake() {
         #region 싱글톤
         /*
@@ -62,12 +73,6 @@ public class Stone : MonoBehaviour
             StartCoroutine(Move());
         }
     }
-    void OnEnable()
-    {
-        Debug.Log("Enable");
-        if (SceneManager.GetActiveScene().name == "MainScene") this.gameObject.SetActive(true);
-        if (SceneManager.GetActiveScene().name != "MainScene") this.gameObject.SetActive(false);
-    }
     IEnumerator Move()
     {
         if (isMoving)
@@ -75,6 +80,14 @@ public class Stone : MonoBehaviour
             yield break;
         }
         isMoving = true;
+
+        switch (diceState)
+        {
+            case GameState.Idle: break;
+            case GameState.DicePlus: steps = steps * 2; break;
+            case GameState.AllUp: AllCoinUp(); break;
+            default: break;
+        }
 
         while (steps > 0)
         {
@@ -106,7 +119,12 @@ public class Stone : MonoBehaviour
         count++;
         diceNum = 0;
         hasRolledDice= false;
-        
+
+        switch (diceState)
+        {
+            case GameState.OpenShop: OpenShop(); break;
+        }
+
         if (count %2 == 0)
         {
             PlayerPrefs.SetInt("routePosition", routePosition);
@@ -123,7 +141,7 @@ public class Stone : MonoBehaviour
     {
         while (numbers.Count < 3)
         {
-            int randomNumber = Random.Range(4, 8);
+            int randomNumber = UnityEngine.Random.Range(4, 8);
 
             if (!numbers.Contains(randomNumber))
             {
@@ -131,9 +149,12 @@ public class Stone : MonoBehaviour
             }
         }
     }
-
-    void OnTriggerEnter(Collider other)
+    public void AllCoinUp()
     {
-        
+        coin += 3;
+    }
+    public void OpenShop()
+    {
+        shop.SetActive(true);
     }
 }

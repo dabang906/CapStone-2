@@ -10,11 +10,24 @@ public class FadeEffect : MonoBehaviour
 
     public Text luckyText;
     CanvasGroup canvasGroup;
-    string[] luckyString = { "더블 주사위", "골드 더블 주사위", "상점 열기", "하나뭐였지?" };
+    string[] luckyString = { "주사위 2배", "모두에게 코인 +3", "상점 열기", "하나뭐였지?" };
+    Stone stone;
     void OnEnable()
     {
+        stone = FindObjectOfType<Stone>();
         canvasGroup = GetComponent<CanvasGroup>();
         randomLucky = Random.Range(0, 4);
+        switch (randomLucky)
+        {
+            case 0:
+                stone.diceState = Stone.GameState.DicePlus; break;
+            case 1:
+                stone.diceState = Stone.GameState.AllUp; break;
+            case 2:
+                stone.diceState = Stone.GameState.OpenShop; break;
+            default:
+                break;
+        }
         luckyText.text = luckyString[randomLucky];
         StartCoroutine(FadeInStart());
     }
@@ -26,7 +39,7 @@ public class FadeEffect : MonoBehaviour
             canvasGroup.alpha = f;
             yield return null;
         }
-        yield return new WaitForSecondsRealtime(3);
+        yield return new WaitForSecondsRealtime(2f);
         StartCoroutine(FadeOutStart());
         yield break;
     }

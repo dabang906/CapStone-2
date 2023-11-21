@@ -2865,7 +2865,7 @@ GameObject:
   - component: {fileID: 3045023129358820896}
   - component: {fileID: 3368982945384556352}
   m_Layer: 0
-  m_Name: MiniGameBackGround
+  m_Name: MiniGameBackGround1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
