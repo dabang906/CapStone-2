@@ -27,7 +27,7 @@ public class CubeSpawner : MonoBehaviour
 
     private IEnumerator SpawnCubeSet()
     {
-        yield return new WaitForSeconds(3.5f);
+        yield return new WaitForSeconds(13f);
         while (true)
         {
             GameObject clone = Instantiate(cubesetPrefab, spawnPoint.position, Quaternion.identity);
@@ -43,6 +43,5 @@ public class CubeSpawner : MonoBehaviour
             if (!timer.timerRunning) break;
         }
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene("MainScene");
     }
 }

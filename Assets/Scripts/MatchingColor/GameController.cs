@@ -7,7 +7,8 @@ public class GameController : MonoBehaviour
 {
     [SerializeField]
     private Text textScore;
-    private int score = 0;
+    [HideInInspector]
+    public int score = 0;
 
     public void IncreaseScore()
     {

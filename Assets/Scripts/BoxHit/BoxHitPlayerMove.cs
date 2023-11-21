@@ -8,15 +8,17 @@ public class BoxHitPlayerMove : MonoBehaviour
 
     Rigidbody rig;
     bool isJump;
+    BoxHitCollisionEvent boxHitCollisionEvent;
     // Start is called before the first frame update
     void Start()
     {
         isJump = false;
         rig = GetComponent<Rigidbody>();
-
+        boxHitCollisionEvent = FindObjectOfType<BoxHitCollisionEvent>();
+        /*
         Freeze();
-        Invoke("UnFreeze", 5.0f);
-        Invoke("Freeze", 15.0f);
+        Invoke("UnFreeze", 13.0f);
+        Invoke("Freeze", 13.0f);*/
     }
 
     void FixedUpdate()
@@ -40,20 +42,9 @@ public class BoxHitPlayerMove : MonoBehaviour
         }
     }
 
-    void Freeze()
-    {
-        rig.constraints = RigidbodyConstraints.FreezeAll;
-    }
-
-    void UnFreeze()
-    {
-        rig.constraints = RigidbodyConstraints.FreezeAll;
-        rig.constraints &= ~RigidbodyConstraints.FreezePositionY;
-    }
-
     void Jump(bool isJump)
     {
-        if (Input.GetKey(KeyCode.Space) && isJump)
+        if (Input.GetKey(KeyCode.Space) && isJump && boxHitCollisionEvent.timerRunning)
         {
             rig.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
         }
