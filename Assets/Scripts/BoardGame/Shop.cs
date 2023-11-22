@@ -9,10 +9,21 @@ public class Shop : MonoBehaviour
     {
         
     }
-
+    void OnEnable()
+    {
+        StartCoroutine(ShopTimer());
+    }
     // Update is called once per frame
     void Update()
     {
         
+    }
+    IEnumerator ShopTimer()
+    {
+        for (int i= 0; i < 10; i++)
+        {
+            yield return new WaitForSeconds(1f);
+        }
+        gameObject.SetActive(false);
     }
 }
