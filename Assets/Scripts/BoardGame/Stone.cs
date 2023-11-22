@@ -12,6 +12,8 @@ public class Stone : MonoBehaviour
         DicePlus,
         AllUp,
         OpenShop,
+        DoubleDice,
+        GoldDice,
     }
     public GameState diceState;
     private static Stone instance = null;
