@@ -160,7 +160,6 @@ public partial class BackEndMatchManager : MonoBehaviour
                 SendDataToInGame(new Protocol.AIPlayerInfo(tmp.Value));
             }
         }
-
         Debug.Log("1초 후 룸 씬 전환 메시지 송신");
         Invoke("SendChangeRoomScene", 1f);
     }

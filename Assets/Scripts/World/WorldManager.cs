@@ -17,7 +17,7 @@ public class WorldManager : MonoBehaviour
     public GameObject playerPool;
     public GameObject playerPrefeb;
     public int numOfPlayer = 0;
-    public GameObject particle;
+    //public GameObject particle;
     private const int MAXPLAYER = 4;
     public int alivePlayer { get; set; }
     private Dictionary<SessionId, Player> players;
@@ -91,8 +91,8 @@ public class WorldManager : MonoBehaviour
         players[index].gameObject.SetActive(false);
 
         //파티클
-        var expObject = Instantiate(particle, players[index].GetPosition(), Quaternion.identity);
-        Destroy(expObject, 5);
+        //var expObject = Instantiate(particle, players[index].GetPosition(), Quaternion.identity);
+        //Destroy(expObject, 5);
 
         InGameUiManager.GetInstance().SetScoreBoard(alivePlayer);
         gameRecord.Push(index);
