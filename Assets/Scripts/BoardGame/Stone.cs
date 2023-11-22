@@ -128,8 +128,7 @@ public class Stone : MonoBehaviour
         if (count %2 == 0)
         {
             PlayerPrefs.SetInt("routePosition", routePosition);
-            SceneManager.LoadScene(4);
-            //SceneManager.LoadScene(numbers[0]);
+            SceneManager.LoadScene(numbers[UnityEngine.Random.RandomRange(0,4)]);
         }
     }
 
