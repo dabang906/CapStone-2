@@ -15,14 +15,14 @@ public class WorldManager : MonoBehaviour
 
     #region 플레이어
     public GameObject playerPool;
-    public GameObject playerPrefeb;
+    public GameObject playerPrefab;
     public int numOfPlayer = 0;
     //public GameObject particle;
     private const int MAXPLAYER = 4;
     public int alivePlayer { get; set; }
     private Dictionary<SessionId, Player> players;
     public GameObject startPointObject;
-    private List<Vector4> statringPoints;
+    //private List<Vector4> statringPoints;
 
     private Stack<SessionId> gameRecord;
     public delegate void PlayerDie(SessionId index);
@@ -63,27 +63,27 @@ public class WorldManager : MonoBehaviour
         GameManager.OnGameOver += OnGameOver;
         GameManager.OnGameResult += OnGameResult;
         myPlayerIndex = SessionId.None;
-        SetPlayerAttribute();
+        //SetPlayerAttribute();
         OnGameStart();
         return true;
     }
 
-    public void SetPlayerAttribute()
-    {
-        // 시작점
-        statringPoints = new List<Vector4>();
+    //public void SetPlayerAttribute()
+    //{
+    //    // 시작점
+    //    statringPoints = new List<Vector4>();
 
-        int num = startPointObject.transform.childCount;
-        for (int i = 0; i < num; ++i)
-        {
-            var child = startPointObject.transform.GetChild(i);
-            Vector4 point = child.transform.position;
-            point.w = child.transform.rotation.eulerAngles.y;
-            statringPoints.Add(point);
-        }
+    //    int num = startPointObject.transform.childCount;
+    //    for (int i = 0; i < num; ++i)
+    //    {
+    //        var child = startPointObject.transform.GetChild(i);
+    //        Vector4 point = child.transform.position;
+    //        point.w = child.transform.rotation.eulerAngles.y;
+    //        statringPoints.Add(point);
+    //    }
 
-        dieEvent += PlayerDieEvent;
-    }
+    //    dieEvent += PlayerDieEvent;
+    //}
 
     private void PlayerDieEvent(SessionId index)
     {
@@ -187,17 +187,18 @@ public class WorldManager : MonoBehaviour
         int index = 0;
         foreach (var sessionId in gamers)
         {
-            GameObject player = Instantiate(playerPrefeb, new Vector3(statringPoints[index].x, statringPoints[index].y, statringPoints[index].z), Quaternion.identity, playerPool.transform);
+            GameObject player = Instantiate(playerPrefab, new Vector3(startPointObject.transform.position.x, startPointObject.transform.position.y, startPointObject.transform.position.z), Quaternion.identity, playerPool.transform);
             players.Add(sessionId, player.GetComponent<Player>());
 
             if (BackEndMatchManager.GetInstance().IsMySessionId(sessionId))
             {
                 myPlayerIndex = sessionId;
-                players[sessionId].Initialize(true, myPlayerIndex, BackEndMatchManager.GetInstance().GetNickNameBySessionId(sessionId), statringPoints[index].w);
+                Debug.Log(sessionId + ", " + myPlayerIndex + ", " + BackEndMatchManager.GetInstance().GetNickNameBySessionId(sessionId) + ", " + players[sessionId]);
+                players[sessionId].Initialize(myPlayerIndex, BackEndMatchManager.GetInstance().GetNickNameBySessionId(sessionId));
             }
             else
             {
-                players[sessionId].Initialize(false, sessionId, BackEndMatchManager.GetInstance().GetNickNameBySessionId(sessionId), statringPoints[index].w);
+                players[sessionId].Initialize(sessionId, BackEndMatchManager.GetInstance().GetNickNameBySessionId(sessionId));
             }
             index += 1;
         }

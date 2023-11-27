@@ -15,6 +15,11 @@ TagManager:
   - Wrong
   - OPBox
   - OpBox
+  - Fade
+  - FadeOut
+  - FadeIn
+  - Loading
+  - PlayerCanvas
   layers:
   - Default
   - TransparentFX
