@@ -15,9 +15,6 @@ EditorBuildSettings:
     path: Assets/Scenes/2. LoadRoom.unity
     guid: a993a8a193e284f399369874ca6ef979
   - enabled: 1
-    path: Assets/Scenes/MainScene.unity
-    guid: 838fe67e6cd0f2c44a3dc19aeb904465
-  - enabled: 1
     path: Assets/Scenes/BoxHit.unity
     guid: ffc468d1c90694ac084c03f43a4f66c0
   - enabled: 1
