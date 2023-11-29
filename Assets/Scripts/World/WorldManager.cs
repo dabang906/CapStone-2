@@ -187,7 +187,7 @@ public class WorldManager : MonoBehaviour
         int index = 0;
         foreach (var sessionId in gamers)
         {
-            GameObject player = Instantiate(playerPrefab, new Vector3(startPointObject.transform.position.x, startPointObject.transform.position.y, startPointObject.transform.position.z), Quaternion.identity, playerPool.transform);
+            GameObject player = Instantiate(playerPrefab, new Vector3(startPointObject.transform.position.x, startPointObject.transform.position.y, startPointObject.transform.position.z), Quaternion.identity);
             players.Add(sessionId, player.GetComponent<Player>());
 
             if (BackEndMatchManager.GetInstance().IsMySessionId(sessionId))
