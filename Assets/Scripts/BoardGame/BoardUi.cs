@@ -6,11 +6,13 @@ using UnityEngine.UI;
 
 public class BoardUi : MonoBehaviour
 {
-    public Text coinText;
-    public GameObject luckyImage;
+    Text coinText;
+    GameObject luckyImage;
     Stone stone;
     void Start()
     {
+        coinText = GameObject.Find("CoinText").GetComponent<Text>();
+        luckyImage = GameObject.Find("LuckImage").GetComponent<GameObject>();
         PlayerData.GetInstance().GameDataUpdate();
         stone = FindObjectOfType<Stone>();
         stone.coin = PlayerData.GetInstance().GameDataGet("coin");
