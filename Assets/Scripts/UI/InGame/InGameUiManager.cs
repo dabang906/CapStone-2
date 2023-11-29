@@ -7,7 +7,7 @@ public class InGameUiManager : MonoBehaviour
     static private InGameUiManager instance;
     public Text scoreBoard;
     public GameObject startCountObject;
-    public GameObject reconnectBoardObject;
+//    public GameObject reconnectBoardObject;
 
     private Text startCountText;
     private Text reconnectBoardText;
