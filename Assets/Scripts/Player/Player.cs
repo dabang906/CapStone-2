@@ -34,9 +34,9 @@ public class Player : MonoBehaviour
 
     // UI
     public GameObject nameObject;
-    public GameObject hpObject;
-    public VirtualStick TESTONLY_vertualStick;
-    public VirtualStick TESTONLY_attackStick;
+    //public GameObject hpObject;
+    //public VirtualStick TESTONLY_vertualStick;
+    //public VirtualStick TESTONLY_attackStick;
     private List<GameObject> hpUi;
     private readonly string playerCanvas = "PlayerCanvas";
 
@@ -60,26 +60,26 @@ public class Player : MonoBehaviour
         if (BackEndMatchManager.GetInstance() == null)
         {
             // 매칭 인스턴스가 존재하지 않을 경우 (인게임 테스트 용도)
-            Initialize(true, SessionId.None, "testPlayer", 0);
+            Initialize(SessionId.None, "testPlayer");
         }
     }
 
-    public void Initialize(bool isMe, SessionId index, string nickName, float rot)
+    public void Initialize(SessionId index, string nickName)
     {
-        this.isMe = isMe;
+        //this.isMe = isMe;
         this.index = index;
         this.nickName = nickName;
 
         var playerUICanvas = GameObject.FindGameObjectWithTag(playerCanvas);
         nameObject = Instantiate(nameObject, Vector3.zero, Quaternion.identity, playerUICanvas.transform);
-        hpObject = Instantiate(hpObject, Vector3.zero, Quaternion.identity, playerUICanvas.transform);
+        //hpObject = Instantiate(hpObject, Vector3.zero, Quaternion.identity, playerUICanvas.transform);
 
         nameObject.GetComponent<Text>().text = nickName;
 
-        if (this.isMe)
-        {
-            Camera.main.GetComponent<FollowCamera>().target = this.transform;
-        }
+        //if (this.isMe)
+        //{
+        //    Camera.main.GetComponent<FollowCamera>().target = this.transform;
+        //}
 
         this.isLive = true;
 
@@ -92,17 +92,17 @@ public class Player : MonoBehaviour
         hpUi = new List<GameObject>();
         for (int i = 0; i < 5; ++i)
         {
-            hpUi.Add(hpObject.transform.GetChild(i + 5).gameObject);
-            hpUi[i].SetActive(false);
+            //hpUi.Add(hpObject.transform.GetChild(i + 5).gameObject);
+            //hpUi[i].SetActive(false);
         }
 
         playerModelObject = this.gameObject;
-        playerModelObject.transform.rotation = Quaternion.Euler(0, rot, 0);
+        //playerModelObject.transform.rotation = Quaternion.Euler(0, rot, 0);
 
         rigidBody = this.GetComponent<Rigidbody>();
 
         nameObject.transform.position = GetNameUIPos();
-        hpObject.transform.position = GetHeartUIPos();
+        //hpObject.transform.position = GetHeartUIPos();
         if (BackEndMatchManager.GetInstance().nowModeType == MatchModeType.TeamOnTeam)
         {
             var teamNumber = BackEndMatchManager.GetInstance().GetTeamInfo(index);
@@ -284,7 +284,7 @@ public class Player : MonoBehaviour
     {
         isLive = false;
         nameObject.SetActive(false);
-        hpObject.SetActive(false);
+        //hpObject.SetActive(false);
     }
 
     Vector3 GetNameUIPos()
@@ -299,25 +299,25 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (BackEndMatchManager.GetInstance() == null)
-        {
-            // 매칭 인스턴스가 존재하지 않는 경우 (인게임 테스트 용도)
-            Vector3 tmp = new Vector3(TESTONLY_vertualStick.GetHorizontalValue(), 0, TESTONLY_vertualStick.GetVerticalValue());
-            tmp = Vector3.Normalize(tmp);
-            SetMoveVector(tmp);
-            //Move();
+        //if (BackEndMatchManager.GetInstance() == null)
+        //{
+        //    // 매칭 인스턴스가 존재하지 않는 경우 (인게임 테스트 용도)
+        //    Vector3 tmp = new Vector3(TESTONLY_vertualStick.GetHorizontalValue(), 0, TESTONLY_vertualStick.GetVerticalValue());
+        //    tmp = Vector3.Normalize(tmp);
+        //    SetMoveVector(tmp);
+        //    Move();
 
 
-            if (TESTONLY_attackStick.isInputEnable)
-            {
-                Vector3 tmp2 = new Vector3(TESTONLY_attackStick.GetHorizontalValue(), 0, TESTONLY_attackStick.GetVerticalValue());
-                if (!tmp2.Equals(Vector3.zero))
-                {
-                    tmp2 += GetPosition();
-                    Attack(tmp2);
-                }
-            }
-        }
+        //    if (TESTONLY_attackStick.isInputEnable)
+        //    {
+        //        Vector3 tmp2 = new Vector3(TESTONLY_attackStick.GetHorizontalValue(), 0, TESTONLY_attackStick.GetVerticalValue());
+        //        if (!tmp2.Equals(Vector3.zero))
+        //        {
+        //            tmp2 += GetPosition();
+        //            Attack(tmp2);
+        //        }
+        //    }
+        //}
 
         if (!isLive)
         {
@@ -354,7 +354,7 @@ public class Player : MonoBehaviour
         if (nameObject.activeSelf)
         {
             nameObject.transform.position = GetNameUIPos();
-            hpObject.transform.position = GetHeartUIPos();
+            //hpObject.transform.position = GetHeartUIPos();
         }
     }
 
@@ -404,7 +404,7 @@ public class Player : MonoBehaviour
             {
                 standardShaderMaterial.color = new Color32(255, 255, 255, 0);
                 nameObject.SetActive(false);
-                hpObject.SetActive(false);
+                //hpObject.SetActive(false);
             }
         }
     }
@@ -437,7 +437,7 @@ public class Player : MonoBehaviour
         {
             standardShaderMaterial.color = new Color32(255, 255, 255, 0);
             nameObject.SetActive(false);
-            hpObject.SetActive(false);
+            //hpObject.SetActive(false);
         }
     }
 
@@ -458,7 +458,7 @@ public class Player : MonoBehaviour
             standardShaderMaterial.color = new Color32(255, 255, 255, 255);
 
             nameObject.SetActive(true);
-            hpObject.SetActive(true);
+            //hpObject.SetActive(true);
         }
     }
 }

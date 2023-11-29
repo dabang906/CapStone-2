@@ -16,8 +16,6 @@ public class Stone : MonoBehaviour
         GoldDice,
     }
     public GameState diceState;
-    private static Stone instance = null;
-    public Route currentRoute;
     public int count = 0;
 
     int routePosition;
@@ -26,10 +24,12 @@ public class Stone : MonoBehaviour
     public int steps;
     public GameObject shop;
 
+    GameObject route;
     List<int> numbers = new List<int>();
     Dice dice;
     bool isMoving;
     SphereCollider sphereCollider;
+    Route currentRoute;
     bool hasRolledDice;  // 주사위를 굴렸는지 여부를 저장하는 변수
 
     void Awake() {
@@ -53,6 +53,8 @@ public class Stone : MonoBehaviour
             Destroy(this.gameObject);
         }*/
         #endregion
+        route = GameObject.Find("Route1");
+        currentRoute = route.GetComponent<Route>();
         if (PlayerPrefs.HasKey("routePosition"))
         {
             routePosition = PlayerPrefs.GetInt("routePosition")-1;

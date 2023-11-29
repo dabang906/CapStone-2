@@ -24,7 +24,7 @@ public class InGameUiManager : MonoBehaviour
 
         startCountText = startCountObject.GetComponentInChildren<Text>();
         startCountObject.SetActive(true);
-        reconnectBoardText = reconnectBoardObject.GetComponentInChildren<Text>();
+//        reconnectBoardText = reconnectBoardObject.GetComponentInChildren<Text>();
         Debug.Log("인게임 UI 설정 완료");
     }
 
@@ -63,7 +63,7 @@ public class InGameUiManager : MonoBehaviour
     public void SetHostWaitBoard()
     {
         reconnectBoardText.text = HostOfflineMsg;
-        reconnectBoardObject.SetActive(true);
+//        reconnectBoardObject.SetActive(true);
         // 4초 후 재접속 메시지 닫음
         Invoke("ReconnectBoardClose", 4.0f);
     }
@@ -71,13 +71,13 @@ public class InGameUiManager : MonoBehaviour
     public void SetReconnectBoard(string playerName)
     {
         reconnectBoardText.text = string.Format(PlayerReconnectMsg, playerName);
-        reconnectBoardObject.SetActive(true);
+//        reconnectBoardObject.SetActive(true);
         // 4초 후 재접속 메시지 닫음
         Invoke("ReconnectBoardClose", 4.0f);
     }
 
     private void ReconnectBoardClose()
     {
-        reconnectBoardObject.SetActive(false);
+        //reconnectBoardObject.SetActive(false);
     }
 }
