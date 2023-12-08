@@ -20,6 +20,7 @@ TagManager:
   - FadeIn
   - Loading
   - Shop
+  - PlayerCanvas
   layers:
   - Default
   - TransparentFX
