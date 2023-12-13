@@ -4,6 +4,9 @@ using UnityEngine;
 using Protocol;
 using BackEnd;
 using BackEnd.Tcp;
+using Photon.Pun;
+using System.IO;
+
 public class WorldManager : MonoBehaviour
 {
 
@@ -15,7 +18,8 @@ public class WorldManager : MonoBehaviour
 
     #region 플레이어
     public GameObject playerPool;
-    public GameObject playerPrefab;
+    public GameObject player1Prefab;
+    public GameObject player2Prefab;
     public int numOfPlayer = 0;
     //public GameObject particle;
     private const int MAXPLAYER = 4;
@@ -187,18 +191,18 @@ public class WorldManager : MonoBehaviour
         int index = 0;
         foreach (var sessionId in gamers)
         {
-            GameObject player = Instantiate(playerPrefab, new Vector3(startPointObject.transform.position.x, startPointObject.transform.position.y, startPointObject.transform.position.z), Quaternion.identity);
+            GameObject player = PhotonNetwork.Instantiate(player1Prefab.name, new Vector3(startPointObject.transform.position.x, startPointObject.transform.position.y, startPointObject.transform.position.z), Quaternion.identity);
             players.Add(sessionId, player.GetComponent<Player>());
 
             if (BackEndMatchManager.GetInstance().IsMySessionId(sessionId))
             {
                 myPlayerIndex = sessionId;
                 Debug.Log(sessionId + ", " + myPlayerIndex + ", " + BackEndMatchManager.GetInstance().GetNickNameBySessionId(sessionId) + ", " + players[sessionId]);
-                players[sessionId].Initialize(myPlayerIndex, BackEndMatchManager.GetInstance().GetNickNameBySessionId(sessionId));
+                //players[sessionId].Initialize(myPlayerIndex, BackEndMatchManager.GetInstance().GetNickNameBySessionId(sessionId));
             }
             else
             {
-                players[sessionId].Initialize(sessionId, BackEndMatchManager.GetInstance().GetNickNameBySessionId(sessionId));
+                //players[sessionId].Initialize(sessionId, BackEndMatchManager.GetInstance().GetNickNameBySessionId(sessionId));
             }
             index += 1;
         }

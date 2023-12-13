@@ -55,17 +55,17 @@ public class Stone : MonoBehaviour
         #endregion
         route = GameObject.Find("Route1");
         currentRoute = route.GetComponent<Route>();
-        if (PlayerPrefs.HasKey("routePosition"))
+        if (PlayerData.GetInstance().GameDataGet("turn") != 8 && gameObject.tag == "Player1")
         {
-            routePosition = PlayerPrefs.GetInt("routePosition")-1;
+            routePosition = PlayerData.GetInstance().GameDataGet("player1routePosition")-1;
             this.transform.position = currentRoute.childNodeList[routePosition/2].position;
-            PlayerPrefs.DeleteAll();
         }
         RandNum();
         dice = FindObjectOfType<Dice>();
         if(routePosition == 0) routePosition+=2;
         sphereCollider = GetComponentInChildren<SphereCollider>();
         sphereCollider.isTrigger = false;
+        coin = PlayerData.GetInstance().GameDataGet("player1coin");
     }
     void Update()
     {
@@ -115,7 +115,6 @@ public class Stone : MonoBehaviour
             Debug.Log(steps);
             steps--;
             routePosition++;
-
         }
         isMoving = false;
         dice.isRolling = false;  // 이동이 끝났으므로 다음 주사위 굴림을 허용
@@ -131,7 +130,9 @@ public class Stone : MonoBehaviour
 
         if (count %2 == 0)
         {
-            PlayerPrefs.SetInt("routePosition", routePosition);
+            if (gameObject.tag == "Player1") PlayerData.GetInstance().Player1Route(routePosition);
+            if (gameObject.tag == "Player2") PlayerData.GetInstance().Player2Route(routePosition);
+            PlayerData.GetInstance().TurnDown();
             SceneManager.LoadScene(numbers[UnityEngine.Random.RandomRange(0,4)]);
         }
     }

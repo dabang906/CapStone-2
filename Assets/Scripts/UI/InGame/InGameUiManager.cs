@@ -2,12 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Timeline.TimelinePlaybackControls;
+
 public class InGameUiManager : MonoBehaviour
 {
     static private InGameUiManager instance;
     public Text scoreBoard;
     public GameObject startCountObject;
-//    public GameObject reconnectBoardObject;
+    public Text turnText;
+    public Text coinText;
+    public GameObject luckyImage;
+    //    public GameObject reconnectBoardObject;
 
     private Text startCountText;
     private Text reconnectBoardText;
@@ -21,11 +26,14 @@ public class InGameUiManager : MonoBehaviour
             Destroy(instance);
         }
         instance = this;
-
-        startCountText = startCountObject.GetComponentInChildren<Text>();
+        startCountText = startCountObject.GetComponent<Text>();
         startCountObject.SetActive(true);
 //        reconnectBoardText = reconnectBoardObject.GetComponentInChildren<Text>();
         Debug.Log("인게임 UI 설정 완료");
+        Debug.Log(PlayerData.GetInstance().GameDataGet("coin").ToString());
+        Debug.Log(PlayerData.GetInstance().GameDataGet("turn").ToString());
+        coinText.text = "Coin : " + PlayerData.GetInstance().GameDataGet("player1coin").ToString();
+        turnText.text = "Turn : " + PlayerData.GetInstance().GameDataGet("turn").ToString();
     }
 
     public static InGameUiManager GetInstance()
@@ -41,11 +49,11 @@ public class InGameUiManager : MonoBehaviour
 
     public void SetScoreBoard(int score)
     {
-        scoreBoard.text = "Remain Player : " + score;
+        //scoreBoard.text = "Remain Player : " + score;
     }
 
     public void SetStartCount(int time, bool isEnable = true)
-    {
+    {/*
         startCountObject.SetActive(isEnable);
         if (isEnable)
         {
@@ -57,7 +65,7 @@ public class InGameUiManager : MonoBehaviour
             {
                 startCountText.text = string.Format("{0}", time);
             }
-        }
+        }*/
     }
 
     public void SetHostWaitBoard()
@@ -79,5 +87,13 @@ public class InGameUiManager : MonoBehaviour
     private void ReconnectBoardClose()
     {
         //reconnectBoardObject.SetActive(false);
+    }
+    public void OnLucky()
+    {
+        luckyImage.SetActive(true);
+    }
+    public void coinTextUpdate(int coin)
+    {
+        coinText.text = "Coin : " + coin.ToString();
     }
 }

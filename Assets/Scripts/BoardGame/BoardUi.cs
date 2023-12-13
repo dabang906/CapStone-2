@@ -2,43 +2,45 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class BoardUi : MonoBehaviour
 {
-    Text coinText;
-    GameObject luckyImage;
-    Stone stone;
-    void Start()
-    {
-        coinText = GameObject.Find("CoinText").GetComponent<Text>();
-        luckyImage = GameObject.Find("LuckImage").GetComponent<GameObject>();
-        PlayerData.GetInstance().GameDataUpdate();
-        stone = FindObjectOfType<Stone>();
-        stone.coin = PlayerData.GetInstance().GameDataGet("coin");
-        coinText.text = stone.coin.ToString();
-    }
-    void Update()
-    {
-        coinText.text = "Coin : " + stone.coin.ToString();
-    }
+    public Stone stone;
     void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Red")
         {
-            stone.coin -= 5;
-            PlayerData.GetInstance().CoinDown();
-            coinText.text = stone.coin.ToString();
+            if(stone.gameObject.tag == "Player1")
+            {
+                stone.coin -= 5;
+                PlayerData.GetInstance().Player1CoinDown();
+                InGameUiManager.GetInstance().coinTextUpdate(stone.coin);
+            }
+            if (stone.gameObject.tag == "Player2")
+            {
+                stone.coin -= 5;
+                PlayerData.GetInstance().Player2CoinDown();
+                InGameUiManager.GetInstance().coinTextUpdate(stone.coin);
+            }
         }
         if (other.gameObject.tag == "Blue")
         {
-            stone.coin += 5;
-            PlayerData.GetInstance().CoinUp();
-            coinText.text = stone.coin.ToString();
+            if(stone.gameObject.tag == "Player1")
+            {
+                stone.coin += 5;
+                PlayerData.GetInstance().Player1CoinUp();
+                InGameUiManager.GetInstance().coinTextUpdate(stone.coin);
+            }
+            if (stone.gameObject.tag == "Player2")
+            {
+                stone.coin += 5;
+                PlayerData.GetInstance().Player2CoinUp();
+                InGameUiManager.GetInstance().coinTextUpdate(stone.coin);
+            }
         }
         if(other.gameObject.tag == "Lucky")
         {
-            luckyImage.SetActive(true);
+            InGameUiManager.GetInstance().OnLucky();
         }
     }
 }
