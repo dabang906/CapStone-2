@@ -23,6 +23,7 @@ TagManager:
   - PlayerCanvas
   - Player1
   - Player2
+  - White
   layers:
   - Default
   - TransparentFX

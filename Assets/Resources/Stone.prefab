@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 406600148737214248}
   m_Layer: 0
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: Player1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -113,7 +113,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &437636898702021694
 MonoBehaviour:
@@ -206,10 +206,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   diceState: 0
-  count: 0
   coin: 10
+  diceNum: 0
   steps: 0
-  shop: {fileID: 0}
 --- !u!114 &8705488787792921796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -347,6 +346,7 @@ MonoBehaviour:
   rollTime: 2
   diceNum: 0
   isRolling: 0
+  stone: {fileID: 6896034944473066360}
 --- !u!222 &6777545111465505775
 CanvasRenderer:
   m_ObjectHideFlags: 0

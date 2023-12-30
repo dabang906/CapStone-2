@@ -45,16 +45,22 @@ public class PlayerData : MonoBehaviour
         Debug.Log("데이터를 초기화합니다.");
         userData.player1coin = 10;
         userData.player1routePosition = 0;
+        userData.player1result = 0;
+        userData.player1state = 0;
         userData.player2coin = 10;
         userData.player2routePosition = 0;
-        userData.turn = 8;
+        userData.player2result = 0;
+        userData.turn = 4;
 
         Debug.Log("뒤끝 업데이트 목록에 해당 데이터들을 추가합니다.");
         Param param = new Param();
         param.Add("player1coin", userData.player1coin);
         param.Add("player1routePosition", userData.player1routePosition);
+        param.Add("player1result", userData.player1result);
+        param.Add("player1state", userData.player1state);
         param.Add("player2coin", userData.player2coin);
         param.Add("player2routePosition", userData.player2routePosition);
+        param.Add("player2result", userData.player2result);
         param.Add("turn", userData.turn);
 
         Debug.Log("게임정보 데이터 삽입을 요청합니다.");
@@ -97,8 +103,11 @@ public class PlayerData : MonoBehaviour
 
                 userData.player1coin = int.Parse(gameDataJson[0]["player1coin"].ToString());
                 userData.player1routePosition = int.Parse(gameDataJson[0]["player1routePosition"].ToString());
+                userData.player1result = int.Parse(gameDataJson[0]["player1result"].ToString());
+                userData.player1state = int.Parse(gameDataJson[0]["player1state"].ToString());
                 userData.player2coin = int.Parse(gameDataJson[0]["player2coin"].ToString());
                 userData.player2routePosition = int.Parse(gameDataJson[0]["player2routePosition"].ToString());
+                userData.player2result = int.Parse(gameDataJson[0]["player2result"].ToString());
                 userData.turn = int.Parse(gameDataJson[0]["turn"].ToString());
 
                 Debug.Log(userData.player1coin.ToString());
@@ -109,10 +118,16 @@ public class PlayerData : MonoBehaviour
                         return userData.player1coin;
                     case "player1routePosition":
                         return userData.player1routePosition;
+                    case "player1result":
+                        return userData.player1result;
+                    case "player1state":
+                        return userData.player1state;
                     case "player2coin":
                         return userData.player2coin;
                     case "player2routePosition":
                         return userData.player2routePosition;
+                    case "player2result":
+                        return userData.player2result;
                     case "turn":
                         return userData.turn;
                 }
@@ -158,6 +173,14 @@ public class PlayerData : MonoBehaviour
     {
         userData.player2routePosition = route;
     }
+    public void Player1Double()
+    {
+        userData.player1state = 1;
+    }
+    public void Player2Double()
+    {
+        userData.player2state = 1;
+    }
     public void TurnDown()
     {
         userData.turn -= 1;
@@ -201,13 +224,26 @@ public class PlayerData : MonoBehaviour
             Debug.LogError("게임정보 데이터 수정에 실패했습니다. : " + bro);
         }
     }
+
+    public void Player1Result(int result)
+    {
+        userData.player1result = result;
+    }
+    public void Player2Result(int result)
+    {
+        userData.player2result = result;
+    }
 }
 
 public class UserData
 {
     public int player1coin = 10;
     public int player1routePosition = 0;
+    public int player1result = 0;
+    public int player1state = 0;
     public int player2coin = 10;
     public int player2routePosition = 0;
-    public int turn = 8;
+    public int player2result = 0;
+    public int turn = 4;
+    public int player2state = 0;
 }

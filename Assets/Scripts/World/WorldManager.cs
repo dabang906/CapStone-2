@@ -6,6 +6,7 @@ using BackEnd;
 using BackEnd.Tcp;
 using Photon.Pun;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public class WorldManager : MonoBehaviour
 {
@@ -31,6 +32,7 @@ public class WorldManager : MonoBehaviour
     private Stack<SessionId> gameRecord;
     public delegate void PlayerDie(SessionId index);
     public PlayerDie dieEvent;
+    string userId;
     #endregion
     void Awake()
     {
@@ -38,7 +40,14 @@ public class WorldManager : MonoBehaviour
     }
     void Start()
     {
-        InitializeGame();
+        BackendReturnObject bro = Backend.BMember.GetUserInfo();
+        if (bro.IsSuccess())
+        {
+            userId = bro.GetReturnValuetoJSON()["row"]["inDate"].ToString();
+        }
+        if(userId == "2023-11-09T12:17:20.000Z") PhotonNetwork.Instantiate(player1Prefab.name, new Vector3(startPointObject.transform.position.x, startPointObject.transform.position.y, startPointObject.transform.position.z), Quaternion.identity);
+        else PhotonNetwork.Instantiate(player2Prefab.name, new Vector3(startPointObject.transform.position.x, startPointObject.transform.position.y, startPointObject.transform.position.z), Quaternion.identity);
+        //InitializeGame();
         var matchInstance = BackEndMatchManager.GetInstance();
         if (matchInstance == null)
         {
@@ -529,4 +538,5 @@ public class WorldManager : MonoBehaviour
     {
         return players[myPlayerIndex].GetPosition();
     }
+    
 }

@@ -16,16 +16,14 @@ public class Stone : MonoBehaviour
         GoldDice,
     }
     public GameState diceState;
-    public int count = 0;
 
     int routePosition;
     public int coin = 10;
-    public static int diceNum;
+    public int diceNum;
     public int steps;
-    public GameObject shop;
 
+    bool diceDouble = false;
     GameObject route;
-    List<int> numbers = new List<int>();
     Dice dice;
     bool isMoving;
     SphereCollider sphereCollider;
@@ -55,13 +53,19 @@ public class Stone : MonoBehaviour
         #endregion
         route = GameObject.Find("Route1");
         currentRoute = route.GetComponent<Route>();
-        if (PlayerData.GetInstance().GameDataGet("turn") != 8 && gameObject.tag == "Player1")
+        if (PlayerData.GetInstance().GameDataGet("turn") != 4 && gameObject.tag == "Player1")
         {
             routePosition = PlayerData.GetInstance().GameDataGet("player1routePosition")-1;
             this.transform.position = currentRoute.childNodeList[routePosition/2].position;
+            if(PlayerData.GetInstance().GameDataGet("player1state") == 1) diceDouble = true;
         }
-        RandNum();
-        dice = FindObjectOfType<Dice>();
+        if (PlayerData.GetInstance().GameDataGet("turn") != 4 && gameObject.tag == "Player2")
+        {
+            routePosition = PlayerData.GetInstance().GameDataGet("player2routePosition") - 1;
+            this.transform.position = currentRoute.childNodeList[routePosition / 2].position;
+            if (PlayerData.GetInstance().GameDataGet("player2state") == 1) diceDouble = true;
+        }
+        dice = GetComponentInChildren<Dice>();
         if(routePosition == 0) routePosition+=2;
         sphereCollider = GetComponentInChildren<SphereCollider>();
         sphereCollider.isTrigger = false;
@@ -85,13 +89,7 @@ public class Stone : MonoBehaviour
         }
         isMoving = true;
 
-        switch (diceState)
-        {
-            case GameState.Idle: break;
-            case GameState.DicePlus: steps = steps * 2; break;
-            case GameState.AllUp: AllCoinUp(); break;
-            default: break;
-        }
+        if (diceDouble) { steps = steps * 2; diceDouble = false; }
 
         while (steps > 0)
         {
@@ -119,46 +117,30 @@ public class Stone : MonoBehaviour
         isMoving = false;
         dice.isRolling = false;  // 이동이 끝났으므로 다음 주사위 굴림을 허용
         sphereCollider.isTrigger = true;
-        count++;
-        diceNum = 0;
-        hasRolledDice= false;
-
         switch (diceState)
         {
-            case GameState.OpenShop: OpenShop(); break;
+            case GameState.AllUp: AllCoinUp(); break;
         }
-
-        if (count %2 == 0)
-        {
-            if (gameObject.tag == "Player1") PlayerData.GetInstance().Player1Route(routePosition);
-            if (gameObject.tag == "Player2") PlayerData.GetInstance().Player2Route(routePosition);
-            PlayerData.GetInstance().TurnDown();
-            SceneManager.LoadScene(numbers[UnityEngine.Random.RandomRange(0,4)]);
-        }
+        if (gameObject.tag == "Player1") { PlayerData.GetInstance().Player1Route(routePosition); }
+        if (gameObject.tag == "Player2") { PlayerData.GetInstance().Player2Route(routePosition); }
+        diceNum = 0;
+        hasRolledDice= false;
+        PlayerData.GetInstance().GameDataUpdate();
+        
     }
 
     bool MoveToNextNode(Vector3 goal)
     {
         return goal != (transform.position = Vector3.MoveTowards(transform.position, goal, 2f * Time.deltaTime));
     }
-    void RandNum()
-    {
-        while (numbers.Count < 3)
-        {
-            int randomNumber = UnityEngine.Random.Range(4, 8);
-
-            if (!numbers.Contains(randomNumber))
-            {
-                numbers.Add(randomNumber);
-            }
-        }
-    }
+    
     public void AllCoinUp()
     {
-        coin += 3;
+        PlayerData.GetInstance().Player1CoinUp();
+        PlayerData.GetInstance().Player2CoinUp();
     }
     public void OpenShop()
     {
-        shop.SetActive(true);
+ //       shop.SetActive(true);
     }
 }

@@ -10,21 +10,19 @@ public class FadeEffect : MonoBehaviour
 
     public Text luckyText;
     CanvasGroup canvasGroup;
-    string[] luckyString = { "주사위 2배", "모두에게 코인 +3", "상점 열기", "하나뭐였지?" };
+    string[] luckyString = { "주사위 2배", "모두에게 코인 +3", };
     Stone stone;
     void OnEnable()
     {
         stone = FindObjectOfType<Stone>();
         canvasGroup = GetComponent<CanvasGroup>();
-        randomLucky = Random.Range(0, 4);
+        randomLucky = Random.Range(0, 2);
         switch (randomLucky)
         {
             case 0:
                 stone.diceState = Stone.GameState.DicePlus; break;
             case 1:
                 stone.diceState = Stone.GameState.AllUp; break;
-            case 2:
-                stone.diceState = Stone.GameState.OpenShop; break;
             default:
                 break;
         }
@@ -53,6 +51,7 @@ public class FadeEffect : MonoBehaviour
         }
         canvasGroup.alpha = 0;
         this.gameObject.SetActive(false);
+        InGameUiManager.GetInstance().UpdateCount();
         yield break;
     }
 }

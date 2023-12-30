@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using BackEnd;
 
 public class Timer : MonoBehaviour
 {
@@ -15,17 +16,25 @@ public class Timer : MonoBehaviour
     private float startTime;
     private float elapsedTime;
     int sceneNumber;
+    int result;
     Text signText;
     PlayerController playerController;
     GameController gameController;
+    string userId;
     void Awake()
     {
+        result = 0;
         signText = sign.GetComponentInChildren<Text>();
         playerController = FindObjectOfType<PlayerController>();
         gameController = FindObjectOfType<GameController>();
         if (SceneManager.GetActiveScene().name == "MatchingColorScene") sceneNumber = 0;
         else if( SceneManager.GetActiveScene().name == "FindCorrect") sceneNumber = 1;
         time = 60f;
+        BackendReturnObject bro = Backend.BMember.GetUserInfo();
+        if (bro.IsSuccess())
+        {
+            userId = bro.GetReturnValuetoJSON()["row"]["inDate"].ToString();
+        }
     }
     // Start is called before the first frame update
     void Start()
@@ -85,16 +94,23 @@ public class Timer : MonoBehaviour
         sign.SetActive(true);
         if(sceneNumber == 0)
         {
-            signText.text = "YourScore :" + gameController.score.ToString(); 
+            result = gameController.score;
+            signText.text = "YourScore :" + result.ToString(); 
         }
         if (sceneNumber == 1)
         {
-            signText.text = "YourScore : " + (playerController.correct - playerController.wrong).ToString();
+            result = playerController.correct - playerController.wrong;
+            signText.text = "YourScore : " + result.ToString();
         }
         for (int i = 0; i < 5; i++)
         {
             yield return new WaitForSeconds(1f);
         }
+        if (userId == "2023-11-09T12:17:20.000Z") PlayerData.GetInstance().Player1Result(result);
+        else PlayerData.GetInstance().Player2Result(result);
+        PlayerData.GetInstance().Player1CoinUp();
+        PlayerData.GetInstance().Player1CoinUp();
+        PlayerData.GetInstance().GameDataUpdate();
         SceneManager.LoadScene("MainScene");
     }
 

@@ -14,13 +14,17 @@ public class BoardUi : MonoBehaviour
             {
                 stone.coin -= 5;
                 PlayerData.GetInstance().Player1CoinDown();
-                InGameUiManager.GetInstance().coinTextUpdate(stone.coin);
+                PlayerData.GetInstance().GameDataUpdate();
+                InGameUiManager.GetInstance().player1CoinTextUpdate(stone.coin);
+                InGameUiManager.GetInstance().UpdateCount();
             }
             if (stone.gameObject.tag == "Player2")
             {
                 stone.coin -= 5;
                 PlayerData.GetInstance().Player2CoinDown();
-                InGameUiManager.GetInstance().coinTextUpdate(stone.coin);
+                PlayerData.GetInstance().GameDataUpdate();
+                InGameUiManager.GetInstance().player2CoinTextUpdate(stone.coin);
+                InGameUiManager.GetInstance().UpdateCount();
             }
         }
         if (other.gameObject.tag == "Blue")
@@ -29,17 +33,23 @@ public class BoardUi : MonoBehaviour
             {
                 stone.coin += 5;
                 PlayerData.GetInstance().Player1CoinUp();
-                InGameUiManager.GetInstance().coinTextUpdate(stone.coin);
+                PlayerData.GetInstance().GameDataUpdate();
+                InGameUiManager.GetInstance().player1CoinTextUpdate(stone.coin);
+                InGameUiManager.GetInstance().UpdateCount();
             }
             if (stone.gameObject.tag == "Player2")
             {
                 stone.coin += 5;
                 PlayerData.GetInstance().Player2CoinUp();
-                InGameUiManager.GetInstance().coinTextUpdate(stone.coin);
+                PlayerData.GetInstance().GameDataUpdate();
+                InGameUiManager.GetInstance().player2CoinTextUpdate(stone.coin);
+                InGameUiManager.GetInstance().UpdateCount();
             }
         }
-        if(other.gameObject.tag == "Lucky")
+        if(other.gameObject.tag == "White") InGameUiManager.GetInstance().UpdateCount();
+        if (other.gameObject.tag == "Lucky")
         {
+
             InGameUiManager.GetInstance().OnLucky();
         }
     }
